@@ -1,0 +1,22 @@
+@import 'functions';
+
+@mixin flexCenter($direction: row) {
+    display: flex;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+@mixin buttonBase() {
+    padding: rem(10);
+    font-weight: bold;
+    background-color: transparent;
+    border: rem(2) solid black;
+    border-color: transparent;
+    border-radius: rem(12);
+    transition: .2s;
+    cursor: pointer;
+
+    &:hover {
+        border-color: black;
+    }
+}

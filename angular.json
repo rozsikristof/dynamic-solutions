@@ -1,31 +1,36 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
-  "newProjectRoot": "projects",
-  "projects": {
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
 	"dynamic-solutions": {
 	  "projectType": "application",
 	  "schematics": {
-		"@schematics/angular:component": {
-		  "style": "scss"
-		},
-		"@schematics/angular:application": {
-		  "strict": true
-		}
+    "@schematics/angular:component": {
+        "style": "scss"
+    },
+    "@schematics/angular:application": {
+        "strict": true
+    }
 	  },
 	  "root": "",
 	  "sourceRoot": "src",
 	  "prefix": "ds",
 	  "architect": {
-		"build": {
-		  "builder": "@angular-devkit/build-angular:browser",
-		  "options": {
+    "build": {
+        "builder": "@angular-devkit/build-angular:browser",
+        "options": {
 			"outputPath": "dist/dynamic-solutions",
 			"index": "src/index.html",
 			"main": "src/main.ts",
 			"polyfills": "src/polyfills.ts",
 			"tsConfig": "tsconfig.app.json",
 			"inlineStyleLanguage": "scss",
+            "stylePreprocessorOptions": {
+                "includePaths": [
+                    "src/assets/scss"
+                ]
+            },
 			"assets": [
 			  "src/assets"
 			],
@@ -33,26 +38,26 @@
 			  "src/styles.scss"
 			],
 			"scripts": []
-		  },
-		  "configurations": {
+        },
+        "configurations": {
 			"production": {
 			  "budgets": [
-				{
-				  "type": "initial",
-				  "maximumWarning": "500kb",
-				  "maximumError": "1mb"
-				},
-				{
-				  "type": "anyComponentStyle",
-				  "maximumWarning": "2kb",
-				  "maximumError": "4kb"
-				}
+        {
+            "type": "initial",
+            "maximumWarning": "500kb",
+            "maximumError": "1mb"
+        },
+        {
+            "type": "anyComponentStyle",
+            "maximumWarning": "2kb",
+            "maximumError": "4kb"
+        }
 			  ],
 			  "fileReplacements": [
-				{
-				  "replace": "src/environments/environment.ts",
-				  "with": "src/environments/environment.prod.ts"
-				}
+        {
+            "replace": "src/environments/environment.ts",
+            "with": "src/environments/environment.prod.ts"
+        }
 			  ],
 			  "outputHashing": "all"
 			},
@@ -64,29 +69,29 @@
 			  "sourceMap": true,
 			  "namedChunks": true
 			}
-		  },
-		  "defaultConfiguration": "production"
-		},
-		"serve": {
-		  "builder": "@angular-devkit/build-angular:dev-server",
-		  "configurations": {
+        },
+        "defaultConfiguration": "production"
+    },
+    "serve": {
+        "builder": "@angular-devkit/build-angular:dev-server",
+        "configurations": {
 			"production": {
 			  "browserTarget": "dynamic-solutions:build:production"
 			},
 			"development": {
 			  "browserTarget": "dynamic-solutions:build:development"
 			}
-		  },
-		  "defaultConfiguration": "development"
-		},
-		"extract-i18n": {
-		  "builder": "@angular-devkit/build-angular:extract-i18n",
-		  "options": {
+        },
+        "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+        "builder": "@angular-devkit/build-angular:extract-i18n",
+        "options": {
 			"browserTarget": "dynamic-solutions:build"
-		  }
-		}
+        }
+    }
 	  }
 	}
-  },
-  "defaultProject": "dynamic-solutions"
+    },
+    "defaultProject": "dynamic-solutions"
 }
