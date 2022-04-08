@@ -1,0 +1,31 @@
+@import 'functions';
+@import 'mixins';
+
+.input-wrapper {
+    width: rem(280);
+}
+
+.input__header {
+    @include flexCenter;
+    justify-content: space-between;
+    margin-bottom: rem(5);
+}
+
+.input__header-title {
+    font-weight: bolder;
+    font-size: rem(14);
+}
+
+.input__header-astersk {
+    height: rem(15);
+    font-size: medium;
+    font-weight: bold;
+    color: red;
+}
+
+.input {
+    width: 100%;
+    padding: rem(7);
+    border: rem(2) solid black;
+    font-size: rem(16);
+}

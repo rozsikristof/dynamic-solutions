@@ -1,5 +1,6 @@
 @import 'functions';
 @import 'mixins';
+@import 'variables';
 
 .header {
     @include flexCenter;
@@ -22,5 +23,5 @@
 }
 
 .header__button--active {
-    border-color: rgb(112, 112, 112);
+    border-color: $button-border;
 }
