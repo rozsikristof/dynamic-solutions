@@ -6,8 +6,9 @@
     <input
         class="input"
         type="text"
+        [class.input--error]="showError"
         [formControlName]="controlName"
         [placeholder]="placeholder"
     />
-    <p class="input__error" *ngIf="showError">{{ firstError }}</p>
+    <p class="input__error-message" *ngIf="showError">{{ firstError }}</p>
 </div>

@@ -1,4 +1,4 @@
-<div class="input__wrapper" [formGroup]="group">
+<div class="input__wrapper input__wrapper--max-width" [formGroup]="group">
     <div class="input__header">
         <span *ngIf="title" class="input__header-title">{{ title }}</span>
         <span *ngIf="required" class="input__header-astersk">&#8727;</span>
@@ -8,6 +8,10 @@
         [class.textarea--resizeable]="isResizeable"
         [formControlName]="controlName"
     ></textarea>
+    <div>
+        <p class="input__error-message" *ngIf="showError">{{ firstError }}</p>
+        <p></p>
+    </div>
 </div>
 
 

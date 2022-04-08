@@ -4,12 +4,14 @@
     @include pageContentCenter;
 }
 
-.user-profile__inner {
-    @include flexCenter($direction: column);
+.user-profile__title {
+    align-self: center;
+}
 
-    align-items: baseline;
+.user-profile__inner {
+    @include flex($direction: column);
+
     height: 100%;
-    padding: rem(20);
 }
 
 .user-profile__avatar {
@@ -19,7 +21,7 @@
 
 .user-profile__grid {
     display: grid;
-    grid-template-columns: rem(130) 1fr;
+    grid-template-columns: rem(160) 1fr;
 }
 
 .user-profile__grid-item {

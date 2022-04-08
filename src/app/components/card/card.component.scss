@@ -4,15 +4,22 @@
 .card {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     min-width: rem(300);
-    width: rem(600);
+    padding: rem(20) rem(40) rem(20) rem(40);
     height: 100%;
-    max-width: rem(800);
     background-color: rgb(245, 245, 245);
     overflow-y: auto;
 }
 
 .card--max-height {
     height: 100%;
+}
+
+.card--small {
+    width: rem(600);
+}
+
+.card--wide {
+    width: rem(850);
 }
 
 .card__button {

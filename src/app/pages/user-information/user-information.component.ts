@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MAX_TEXT, MIN_TEXT } from 'src/app/constants/constants';
+import { MAX_ABOUT_TEXT, MAX_NAME_TEXT, MIN_NAME_TEXT } from 'src/app/constants/constants';
+import { FormValidators } from 'src/app/constants/form-validators';
+import { markAllAsDirty } from 'src/app/utils/form-validation.util';
 
 @Component({
     selector: 'ds-user-information',
@@ -9,14 +11,14 @@ import { MAX_TEXT, MIN_TEXT } from 'src/app/constants/constants';
 })
 export class UserInformationComponent {
     userInformationGroup: FormGroup;
-    formSubmitted: boolean;
+    formValidators = FormValidators;
 
     constructor(private readonly formBuilder: FormBuilder) {
         this.initilaizeFormGroup();
     }
 
     updateUserInformation(): void {
-        this.formSubmitted = true;
+        markAllAsDirty(this.userInformationGroup);
     }
 
     private initilaizeFormGroup(): void {
@@ -24,16 +26,16 @@ export class UserInformationComponent {
             firstName: new FormControl('', {
                 validators: [
                     Validators.required,
-                    Validators.min(MIN_TEXT),
-                    Validators.max(MAX_TEXT)
+                    Validators.minLength(MIN_NAME_TEXT),
+                    Validators.maxLength(MAX_NAME_TEXT)
                 ],
                 updateOn: 'submit'
             }),
             lastName: new FormControl('', {
                 validators: [
                     Validators.required,
-                    Validators.min(MIN_TEXT),
-                    Validators.max(MAX_TEXT)
+                    Validators.min(MIN_NAME_TEXT),
+                    Validators.max(MAX_NAME_TEXT)
                 ],
                 updateOn: 'submit'
             }),
@@ -58,7 +60,8 @@ export class UserInformationComponent {
             }),
             about: new FormControl('', {
                 validators: [
-                    Validators.required
+                    Validators.required,
+                    Validators.max(MAX_ABOUT_TEXT)
                 ],
                 updateOn: 'submit'
             })

@@ -1,7 +1,7 @@
 @import 'index';
 
 .header {
-    @include flexCenter;
+    @include flex(center);
 
     height: rem(60);
     justify-content: space-between;

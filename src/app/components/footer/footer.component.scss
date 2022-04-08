@@ -2,7 +2,7 @@
 @import 'mixins';
 
 .footer {
-    @include flexCenter;
+    @include flex(center);
 
     justify-content: center;
     height: rem(50);

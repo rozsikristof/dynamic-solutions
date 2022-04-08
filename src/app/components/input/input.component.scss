@@ -5,8 +5,12 @@
     width: rem(320);
 }
 
+.input__wrapper--max-width {
+    width: 100%;
+}
+
 .input__header {
-    @include flexCenter;
+    @include flex(center);
     justify-content: space-between;
     margin-bottom: rem(5);
 }
@@ -34,7 +38,11 @@
     }
 }
 
-.input__error {
+.input--error {
+    border-color: red;
+}
+
+.input__error-message {
     margin-top: rem(5);
     margin-bottom: 0;
     color: red;

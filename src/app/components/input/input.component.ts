@@ -1,24 +1,23 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
-import { InputValidator } from 'src/app/interfaces/input-validator.interface';
+import { FormValidator } from 'src/app/interfaces/form-validator.interface';
 
 @Component({
     selector: 'ds-input',
     templateUrl: './input.component.html',
     styleUrls: ['./input.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
 export class InputComponent implements OnInit {
     @Input() placeholder: string;
     @Input() title: string;
-    @Input() validators: InputValidator[] = [];
+    @Input() validators: FormValidator[] = [];
     @Input() required: boolean;
     @Input() controlName: string;
     @Input() group: FormGroup;
     @Input() syncControls: boolean;
 
-    formControl: AbstractControl | null;
+    formControl: AbstractControl;
 
     ngOnInit(): void {
         this.formControl = this.group.get(this.controlName);
@@ -34,6 +33,6 @@ export class InputComponent implements OnInit {
     }
 
     get showError(): boolean {
-        return this.syncControls && !!this.firstError;
+        return this.formControl.dirty && !!this.firstError;
     }
 }

@@ -1,8 +1,8 @@
 @import 'functions';
 
-@mixin flexCenter($direction: row) {
+@mixin flex($align-items: baseline, $direction: row) {
     display: flex;
-    align-items: center;
+    align-items: $align-items;
     flex-direction: $direction;
 }
 
@@ -22,7 +22,7 @@
 }
 
 @mixin pageContentCenter() {
-    @include flexCenter($direction: column);
+    @include flex(center, column);
     height: 100%;
-    padding-bottom: rem(60);
+    padding-bottom: rem(20);
 }
