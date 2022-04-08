@@ -2,41 +2,62 @@
     <ds-card class="card--max-height">
         <div class="user-information__inner">
             <h2 class="user-information__title">Edit user details</h2>
-            <form class="user-information__form">
+            <form class="user-information__form" (ngSubmit)="updateUserInformation()">
                 <ds-input
                     class="user-information__field"
                     title="First name"
                     placeholder="John"
+                    controlName="firstName"
                     [required]="true"
+                    [group]="userInformationGroup"
+                    [syncControls]="formSubmitted"
+                    [validators]="[
+                        { validator: 'required', message: 'Required field' }
+                    ]"
                 ></ds-input>
                 <ds-input
                     class="user-information__field"
                     title="Last name"
                     placeholder="Smith"
+                    controlName="lastName"
                     [required]="true"
+                    [group]="userInformationGroup"
+                    [syncControls]="formSubmitted"
                 ></ds-input>
                 <ds-input
                     class="user-information__field"
                     title="Email"
                     placeholder="john.smith@example.com"
+                    controlName="email"
                     [required]="true"
+                    [group]="userInformationGroup"
+                    [syncControls]="formSubmitted"
                 ></ds-input>
                 <ds-input
                     class="user-information__field"
                     title="Phone number"
                     placeholder="123456789"
+                    controlName="phone"
                     [required]="true"
+                    [group]="userInformationGroup"
+                    [syncControls]="formSubmitted"
                 ></ds-input>
                 <ds-input
                     class="user-information__field"
                     title="Date of birth"
                     placeholder="1990.01.01."
+                    controlName="dateOfBirth"
                     [required]="true"
+                    [group]="userInformationGroup"
+                    [syncControls]="formSubmitted"
                 ></ds-input>
                 <ds-textarea
                     class="user-information__field"
                     title="About"
+                    controlName="about"
                     [required]="true"
+                    [group]="userInformationGroup"
+                    [syncControls]="formSubmitted"
                 ></ds-textarea>
                 <ngx-file-drop
                     class="user-information__drag-and-drop"
@@ -45,6 +66,7 @@
                 ></ngx-file-drop>
                 <button
                     class="card__button"
+                    type="submit"
                     aria-label="Save changes"
                 >
                     Save changes

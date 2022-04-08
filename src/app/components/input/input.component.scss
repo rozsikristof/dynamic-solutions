@@ -33,3 +33,11 @@
         border-color: black;
     }
 }
+
+.input__error {
+    margin-top: rem(5);
+    margin-bottom: 0;
+    color: red;
+    font-weight: bold;
+    font-size: small;
+}

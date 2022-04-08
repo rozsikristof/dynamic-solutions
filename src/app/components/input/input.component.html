@@ -1,4 +1,4 @@
-<div class="input__wrapper">
+<div class="input__wrapper" [formGroup]="group">
     <div class="input__header">
         <span *ngIf="title" class="input__header-title">{{ title }}</span>
         <span *ngIf="required" class="input__header-astersk">&#8727;</span>
@@ -6,6 +6,8 @@
     <input
         class="input"
         type="text"
+        [formControlName]="controlName"
         [placeholder]="placeholder"
     />
+    <p class="input__error" *ngIf="showError">{{ firstError }}</p>
 </div>
