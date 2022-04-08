@@ -1,0 +1,13 @@
+<header class="header">
+    <img
+        class="header__logo"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Random.org_logo.svg/1280px-Random.org_logo.svg.png"
+        alt="Site logo"
+    />
+    <nav>
+        <!-- If more buttons are present, maybe <ng-template> could be used with routerLink and buttonName variables that could be passed onto the template -->
+        <!-- Or an array variable in the .ts file and use *ngFor to render the buttons -->
+        <button class="header__button" routerLink="profile" routerLinkActive="header__button--active">User profile</button>
+        <button class="header__button" routerLink="information" routerLinkActive="header__button--active">User information</button>
+    </nav>
+</header>
