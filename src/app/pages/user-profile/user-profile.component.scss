@@ -1,0 +1,52 @@
+@import 'functions';
+@import 'mixins';
+@import 'variables';
+
+.user-profile {
+    @include flexCenter($direction: column);
+    height: 100%;
+    padding-bottom: rem(60);
+}
+
+.user-profile__avatar {
+    width: rem(150);
+    margin-bottom: rem(20);
+}
+
+.user-profile__card {
+    @include flexCenter(column);
+
+    align-items: flex-start;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    min-width: rem(300);
+    width: rem(600);
+    height: 100%;
+    padding: rem(20);
+    background-color: rgb(245, 245, 245);
+}
+
+.user-profile__grid {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+}
+
+.user-profile__grid-item {
+    padding: rem(8);
+
+    &:nth-child(odd) {
+        font-weight: bold;
+    }
+}
+
+.user-profile__about {
+    margin: 0;
+}
+
+.user-profile__edit-details {
+    @include buttonBase;
+
+    border-radius: 0;
+    border-color: $button-border;
+    width: 100%;
+    margin-top: auto;
+}
