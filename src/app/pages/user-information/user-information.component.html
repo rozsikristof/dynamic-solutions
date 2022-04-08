@@ -65,7 +65,8 @@
                     [required]="true"
                     [group]="userInformationGroup"
                     [validators]="[
-                        formValidators.required
+                        formValidators.required,
+                        formValidators.textarea_maxlength
                     ]"
                 ></ds-textarea>
                 <ngx-file-drop

@@ -4,13 +4,14 @@
         <span *ngIf="required" class="input__header-astersk">&#8727;</span>
     </div>
     <textarea
+        #textArea
         class="input textarea"
-        [class.textarea--resizeable]="isResizeable"
         [formControlName]="controlName"
+        (input)="textAreaInput()"
     ></textarea>
-    <div>
-        <p class="input__error-message" *ngIf="showError">{{ firstError }}</p>
-        <p></p>
+    <div class="textarea__footer input__error-message">
+        <span *ngIf="showError">{{ firstError }}</span>
+        <span class="textarea__footer-counter">{{ inputValueLength }} / 200</span>
     </div>
 </div>
 

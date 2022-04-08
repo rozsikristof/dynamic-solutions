@@ -61,7 +61,7 @@ export class UserInformationComponent {
             about: new FormControl('', {
                 validators: [
                     Validators.required,
-                    Validators.max(MAX_ABOUT_TEXT)
+                    Validators.maxLength(MAX_ABOUT_TEXT)
                 ],
                 updateOn: 'submit'
             })
