@@ -1,8 +1,8 @@
 @import 'functions';
 @import 'mixins';
 
-.input-wrapper {
-    width: rem(280);
+.input__wrapper {
+    width: rem(320);
 }
 
 .input__header {
@@ -12,7 +12,7 @@
 }
 
 .input__header-title {
-    font-weight: bolder;
+    font-weight: bold;
     font-size: rem(14);
 }
 
@@ -26,6 +26,10 @@
 .input {
     width: 100%;
     padding: rem(7);
-    border: rem(2) solid black;
+    border: rem(2) solid gray;
     font-size: rem(16);
+
+    &:hover {
+        border-color: black;
+    }
 }

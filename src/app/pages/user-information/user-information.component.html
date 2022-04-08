@@ -1,1 +1,55 @@
-<p>user-information works!</p>
+<div class="user-information">
+    <ds-card class="card--max-height">
+        <div class="user-information__inner">
+            <h2 class="user-information__title">Edit user details</h2>
+            <form class="user-information__form">
+                <ds-input
+                    class="user-information__field"
+                    title="First name"
+                    placeholder="John"
+                    [required]="true"
+                ></ds-input>
+                <ds-input
+                    class="user-information__field"
+                    title="Last name"
+                    placeholder="Smith"
+                    [required]="true"
+                ></ds-input>
+                <ds-input
+                    class="user-information__field"
+                    title="Email"
+                    placeholder="john.smith@example.com"
+                    [required]="true"
+                ></ds-input>
+                <ds-input
+                    class="user-information__field"
+                    title="Phone number"
+                    placeholder="123456789"
+                    [required]="true"
+                ></ds-input>
+                <ds-input
+                    class="user-information__field"
+                    title="Date of birth"
+                    placeholder="1990.01.01."
+                    [required]="true"
+                ></ds-input>
+                <ds-textarea
+                    class="user-information__field"
+                    title="About"
+                    [required]="true"
+                ></ds-textarea>
+                <ngx-file-drop
+                    class="user-information__drag-and-drop"
+                    dropZoneLabel="Drop your avatar here"
+                    accept=".jpg"
+                ></ngx-file-drop>
+                <button
+                    class="card__button"
+                    aria-label="Save changes"
+                >
+                    Save changes
+                </button>
+            </form>
+        </div>
+    </ds-card>
+</div>

@@ -1,11 +1,15 @@
-@import 'functions';
-@import 'mixins';
-@import 'variables';
+@import 'index';
 
 .user-profile {
+    @include pageContentCenter;
+}
+
+.user-profile__inner {
     @include flexCenter($direction: column);
+
+    align-items: baseline;
     height: 100%;
-    padding-bottom: rem(60);
+    padding: rem(20);
 }
 
 .user-profile__avatar {
@@ -13,21 +17,9 @@
     margin-bottom: rem(20);
 }
 
-.user-profile__card {
-    @include flexCenter(column);
-
-    align-items: flex-start;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-    min-width: rem(300);
-    width: rem(600);
-    height: 100%;
-    padding: rem(20);
-    background-color: rgb(245, 245, 245);
-}
-
 .user-profile__grid {
     display: grid;
-    grid-template-columns: 130px 1fr;
+    grid-template-columns: rem(130) 1fr;
 }
 
 .user-profile__grid-item {
@@ -40,13 +32,4 @@
 
 .user-profile__about {
     margin: 0;
-}
-
-.user-profile__edit-details {
-    @include buttonBase;
-
-    border-radius: 0;
-    border-color: $button-border;
-    width: 100%;
-    margin-top: auto;
 }

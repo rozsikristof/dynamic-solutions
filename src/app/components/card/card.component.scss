@@ -1,0 +1,25 @@
+@import 'mixins';
+@import 'variables';
+
+.card {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    min-width: rem(300);
+    width: rem(600);
+    height: 100%;
+    max-width: rem(800);
+    background-color: rgb(245, 245, 245);
+    overflow-y: auto;
+}
+
+.card--max-height {
+    height: 100%;
+}
+
+.card__button {
+    @include buttonBase;
+
+    border-radius: 0;
+    border-color: $button-border;
+    width: 100%;
+    margin-top: auto;
+}

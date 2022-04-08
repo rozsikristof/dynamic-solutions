@@ -3,9 +3,10 @@
         <span *ngIf="title" class="input__header-title">{{ title }}</span>
         <span *ngIf="required" class="input__header-astersk">&#8727;</span>
     </div>
-    <input
-        class="input"
-        type="text"
-        [placeholder]="placeholder"
-    />
+    <textarea
+        class="input textarea"
+        [class.textarea--resizeable]="isResizeable"
+    ></textarea>
 </div>
+
+

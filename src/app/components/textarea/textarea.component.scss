@@ -1,0 +1,10 @@
+@import 'functions';
+
+.textarea {
+    height: rem(160);
+    resize: none;
+}
+
+.textarea--resizeable {
+    resize: both;
+}

@@ -1,0 +1,31 @@
+@import 'mixins';
+@import 'functions';
+
+.user-information {
+    @include pageContentCenter;
+}
+
+.user-information__title {
+    margin-bottom: rem(50);
+}
+
+.user-information__inner {
+    @include flexCenter(column);
+
+    border-top: rem(20) solid transparent;
+    border-bottom: rem(20) solid transparent;
+}
+
+.user-information__field {
+    display: block;
+    margin-bottom: rem(20);
+}
+.user-information__drag-and-drop {
+    width: 100%;
+    margin-bottom: rem(20);
+}
+
+.user-information__form {
+    @include flexCenter($direction: column);
+    height: 100%;
+}
