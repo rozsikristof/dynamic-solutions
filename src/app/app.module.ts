@@ -9,9 +9,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { InputComponent } from './components/input/input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardComponent } from './components/card/card.component';
-import { NgxFileDropModule } from 'ngx-file-drop';
 import { FooterComponent } from './components/footer/footer.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
+import { FileInputComponent } from './components/file-input/file-input.component';
+import { FileDirectiveDirective } from './directives/file-directive.directive';
 
 @NgModule({
     declarations: [
@@ -22,14 +23,15 @@ import { TextareaComponent } from './components/textarea/textarea.component';
         InputComponent,
         CardComponent,
         FooterComponent,
-        TextareaComponent
+        TextareaComponent,
+        FileInputComponent,
+        FileDirectiveDirective
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         FormsModule,
-        ReactiveFormsModule,
-        NgxFileDropModule
+        ReactiveFormsModule
     ],
     providers: [],
     bootstrap: [AppComponent]

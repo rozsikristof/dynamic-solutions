@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MAX_ABOUT_TEXT, MAX_NAME_TEXT, MIN_NAME_TEXT } from 'src/app/constants/constants';
 import { FormValidators } from 'src/app/constants/form-validators';
 import { markAllAsDirty } from 'src/app/utils/form-validation.util';
@@ -13,12 +14,23 @@ export class UserInformationComponent {
     userInformationGroup: FormGroup;
     formValidators = FormValidators;
 
-    constructor(private readonly formBuilder: FormBuilder) {
+    constructor(
+        private readonly formBuilder: FormBuilder,
+        private readonly router: Router
+    ) {
         this.initilaizeFormGroup();
     }
 
     updateUserInformation(): void {
-        markAllAsDirty(this.userInformationGroup);
+        if (this.userInformationGroup.valid) {
+            this.router.navigate(['profile']);
+        } else {
+            markAllAsDirty(this.userInformationGroup);
+        }
+    }
+
+    handleFileInput(files: any): void {
+        console.log(files);
     }
 
     private initilaizeFormGroup(): void {
@@ -63,6 +75,9 @@ export class UserInformationComponent {
                     Validators.required,
                     Validators.maxLength(MAX_ABOUT_TEXT)
                 ],
+                updateOn: 'submit'
+            }),
+            avatar: new FormControl('', {
                 updateOn: 'submit'
             })
         });

@@ -58,6 +58,11 @@
                         formValidators.required
                     ]"
                 ></ds-input>
+                <ds-file-input
+                    title="Avatar"
+                    controlName="avatar"
+                    [group]="userInformationGroup"
+                ></ds-file-input>
                 <ds-textarea
                     class="user-information__field--max-width"
                     title="About"
@@ -69,11 +74,6 @@
                         formValidators.textarea_maxlength
                     ]"
                 ></ds-textarea>
-                <ngx-file-drop
-                    class="user-information__drag-and-drop"
-                    dropZoneLabel="Drop your avatar here"
-                    accept=".jpg"
-                ></ngx-file-drop>
                 <button
                     class="card__button"
                     type="submit"
