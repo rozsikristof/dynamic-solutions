@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AxiosResponse } from 'axios';
 import { MAX_ABOUT_TEXT, MAX_NAME_TEXT, MIN_NAME_TEXT } from 'src/app/constants/constants';
 import { FormValidators } from 'src/app/constants/form-validators';
 import { User } from 'src/app/interfaces/user.interface';
@@ -28,11 +27,28 @@ export class UserInformationComponent {
 
     updateUserInformation(): void {
         if (this.userInformationGroup.valid) {
-            this.router.navigate(['profile']);
+            this.isLoading = true;
+            this.userService.updateUser(this.updatedUserDetails).then(() => this.router.navigate(['profile']))
+                .finally(() => this.isLoading = false);
         } else {
             markAllAsDirty(this.userInformationGroup);
         }
-        console.log(this.userInformationGroup.get('firstName'));
+    }
+
+    private get updatedUserDetails(): User {
+        return {
+            id: 1,
+            firstName: this.getControlValue('firstName'),
+            lastName: this.getControlValue('lastName'),
+            email: this.getControlValue('email'),
+            phone: this.getControlValue('phone'),
+            birthday: this.getControlValue('birthday'),
+            about: this.getControlValue('about')
+        } as User;
+    }
+
+    private getControlValue(controlName: string): string {
+        return this.userInformationGroup.get(controlName).value;
     }
 
     private getUserData(): Promise<void> {
@@ -72,7 +88,7 @@ export class UserInformationComponent {
                 ],
                 updateOn: 'submit'
             }),
-            dateOfBirth: new FormControl(userData?.birthday, {
+            birthday: new FormControl(userData?.birthday, {
                 validators: [
                     Validators.required,
                 ],
