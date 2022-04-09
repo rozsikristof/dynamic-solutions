@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { Directive, HostListener } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Directive({
@@ -10,9 +10,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     }]
 })
 export class FileDirectiveDirective implements ControlValueAccessor  {
-
-    constructor(private element: ElementRef, private render: Renderer2) {  }
-
     @HostListener('change', ['$event.target.files'])
     detectChanges($event: FileList): void {
         this.onChange($event[0]);
