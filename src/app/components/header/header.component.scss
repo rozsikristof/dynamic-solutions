@@ -12,6 +12,10 @@
     width: rem(200);
     margin-left: rem(10);
     cursor: pointer;
+
+    @include mediaSmall() {
+        display: none;
+    }
 }
 
 .header__button {
@@ -22,4 +26,12 @@
 
 .header__button--active {
     border-color: $button-border;
+}
+
+.header-navigation {
+    @include mediaSmall() {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
 }

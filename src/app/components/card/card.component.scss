@@ -8,6 +8,11 @@
     height: 100%;
     background-color: rgb(245, 245, 245);
     overflow-y: auto;
+
+    @include mediaSmall() {
+        padding-left: rem(12);
+        padding-right: rem(12);
+    }
 }
 
 .card--max-height {
@@ -16,10 +21,18 @@
 
 .card--small {
     width: rem(680);
+
+    @include mediaSmall() {
+        width: 100%;
+    }
 }
 
 .card--wide {
     width: rem(850);
+
+    @include mediaLarge() {
+        width: 100%;
+    }
 }
 
 .card__button {

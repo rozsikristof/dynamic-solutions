@@ -3,6 +3,10 @@
 
 .input__wrapper {
     width: rem(320);
+
+    @include mediaExtraSmall() {
+        width: rem(260);
+    }
 }
 
 .input__wrapper--max-width {
