@@ -1,6 +1,11 @@
 @import 'functions';
+@import 'mixins';
 
 .app__main {
     height: calc(100% - rem(110));
-    padding-top: rem(20);
+    padding: rem(20) 0 rem(20) 0;
+
+    @include mediaLarge() {
+        padding: 0;
+    }
 }

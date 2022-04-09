@@ -24,5 +24,22 @@
 @mixin pageContentCenter() {
     @include flex(center, column);
     height: 100%;
-    padding-bottom: rem(20);
+}
+
+@mixin mediaLarge() {
+    @media only screen and (max-width: 1024px) {
+        @content;
+    }
+}
+
+@mixin mediaSmall() {
+    @media only screen and (max-width: 756px) {
+        @content;
+    }
+}
+
+@mixin mediaExtraSmall() {
+    @media only screen and (max-width: 280px) {
+        @content;
+    }
 }
