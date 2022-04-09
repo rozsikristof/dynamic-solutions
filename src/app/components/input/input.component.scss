@@ -1,18 +1,22 @@
 @import 'functions';
 @import 'mixins';
 
-.input-wrapper {
-    width: rem(280);
+.input__wrapper {
+    width: rem(320);
+}
+
+.input__wrapper--max-width {
+    width: 100%;
 }
 
 .input__header {
-    @include flexCenter;
+    @include flex(center);
     justify-content: space-between;
     margin-bottom: rem(5);
 }
 
 .input__header-title {
-    font-weight: bolder;
+    font-weight: bold;
     font-size: rem(14);
 }
 
@@ -26,6 +30,22 @@
 .input {
     width: 100%;
     padding: rem(7);
-    border: rem(2) solid black;
+    border: rem(2) solid gray;
     font-size: rem(16);
+
+    &:hover {
+        border-color: black;
+    }
+}
+
+.input--error {
+    border-color: red;
+}
+
+.input__error-message {
+    display: block;
+    margin-top: rem(5);
+    color: red;
+    font-weight: bold;
+    font-size: small;
 }

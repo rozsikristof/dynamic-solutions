@@ -4,11 +4,9 @@
         <span *ngIf="required" class="input__header-astersk">&#8727;</span>
     </div>
     <input
-        class="input"
-        type="text"
-        [class.input--error]="showError"
+        type="file"
+        accept=".jpg, .jpeg"
         [formControlName]="controlName"
-        [placeholder]="placeholder"
-    />
-    <span class="input__error-message" *ngIf="showError">{{ firstError }}</span>
+    >
 </div>
+

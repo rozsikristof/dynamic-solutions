@@ -1,4 +1,4 @@
-export interface InputValidator {
+export interface FormValidator {
     validator: string;
     message: string;
 }

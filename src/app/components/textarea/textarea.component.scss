@@ -1,0 +1,16 @@
+@import 'functions';
+
+.textarea {
+    height: rem(150);
+    resize: none;
+}
+
+.textarea__footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.textarea__footer-counter {
+    margin-left: auto;
+    color: black;
+}

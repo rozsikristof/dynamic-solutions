@@ -1,0 +1,10 @@
+@import 'functions';
+@import 'mixins';
+
+.footer {
+    @include flex(center);
+
+    justify-content: center;
+    height: rem(50);
+    background-color: lightgray;
+}

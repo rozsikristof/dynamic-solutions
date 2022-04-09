@@ -1,0 +1,18 @@
+<div class="input__wrapper input__wrapper--max-width" [formGroup]="group">
+    <div class="input__header">
+        <span *ngIf="title" class="input__header-title">{{ title }}</span>
+        <span *ngIf="required" class="input__header-astersk">&#8727;</span>
+    </div>
+    <textarea
+        #textArea
+        class="input textarea"
+        [formControlName]="controlName"
+        (input)="textAreaInput()"
+    ></textarea>
+    <div class="textarea__footer input__error-message">
+        <span *ngIf="showError">{{ firstError }}</span>
+        <span class="textarea__footer-counter">{{ inputValueLength }} / 200</span>
+    </div>
+</div>
+
+

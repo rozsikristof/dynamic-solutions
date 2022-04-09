@@ -1,8 +1,8 @@
 @import 'functions';
 
-@mixin flexCenter($direction: row) {
+@mixin flex($align-items: baseline, $direction: row) {
     display: flex;
-    align-items: center;
+    align-items: $align-items;
     flex-direction: $direction;
 }
 
@@ -19,4 +19,10 @@
     &:hover {
         border-color: black;
     }
+}
+
+@mixin pageContentCenter() {
+    @include flex(center, column);
+    height: 100%;
+    padding-bottom: rem(20);
 }
