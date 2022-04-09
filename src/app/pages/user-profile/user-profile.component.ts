@@ -17,7 +17,7 @@ export class UserProfileComponent {
         private readonly userService: UserService
     ) {
         this.isLoading = true;
-        this.userService.getUserById(1).then(response => this.user = response.data)
+        this.userService.getUserById(1).then(response => this.user = response)
             .finally(() => {
                 this.isLoading = false
             });

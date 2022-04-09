@@ -2,7 +2,13 @@
     <ds-card class="card--max-height card--wide">
         <div class="user-information__inner">
             <h2 class="user-information__title">Edit user details</h2>
-            <form class="user-information__form" [formGroup]="userInformationGroup" (ngSubmit)="updateUserInformation()">
+            <ds-loading *ngIf="isLoading"></ds-loading>
+            <form
+                *ngIf="!isLoading"
+                class="user-information__form"
+                [formGroup]="userInformationGroup"
+                (ngSubmit)="updateUserInformation()"
+            >
                 <div class="user-information__form-fields">
                     <ds-input
                         title="First name"

@@ -6,6 +6,7 @@
     <textarea
         #textArea
         class="input textarea"
+        [class.input--error]="showError"
         [formControlName]="controlName"
         (input)="textAreaInput()"
     ></textarea>
