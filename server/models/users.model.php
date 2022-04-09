@@ -26,25 +26,18 @@ class Users {
     public function getUserById($id) {
         if (isset($id)) {
             $sql = "SELECT id, firstName, lastName, email, phone, birthday, about, img FROM " . $this->table . " WHERE id = '" . $id . "'";
-            $result = $this->conn->query($sql)->fetch_assoc();
-
-            return $result;
+            return $this->conn->query($sql)->fetch_assoc();
         }
+
+        return false;
     }
 
     public function updateUser($data) {
         if (isset($data->id)) {
-            $sql = "UPDATE" . $this->table . " SET 
-            firstName = '" . $data->firstname . "', 
-            lastName = '" . $data->lastName . "', 
-            email = '" . $data->email . "', 
-            phone = '" . $data->phone . "', 
-            birthday = '" . $data->birthday . "', 
-            about, = '" . $data->img . "'";
-
-            $result = $this->conn->query($sql)->fetch_assoc();
-
-            return $result;
+            $sql = "UPDATE " . $this->table . " SET firstName = '" . $data->firstName . "', lastName = '" . $data->lastName . "', email = '" . $data->email . "', phone = '" . $data->phone . "', birthday = '" . $data->birthday . "', about = '" . $data->about . "' WHERE id = '" . $data->id . "'";
+            return $this->conn->query($sql);
         }
+
+        return false;
     }
 }
