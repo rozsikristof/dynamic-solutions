@@ -17,6 +17,8 @@ export class UserInformationComponent {
     formValidators = FormValidators;
     isLoading: boolean;
 
+    private userId: number;
+
     constructor(
         private readonly formBuilder: FormBuilder,
         private readonly router: Router,
@@ -35,31 +37,47 @@ export class UserInformationComponent {
         }
     }
 
-    private get updatedUserDetails(): User {
-        return {
-            id: 1,
+    private get updatedUserDetails(): FormData {
+        const avatar: File = this.getControlValue('avatar');
+        const userData = {
+            id: this.userId,
             firstName: this.getControlValue('firstName'),
             lastName: this.getControlValue('lastName'),
             email: this.getControlValue('email'),
             phone: this.getControlValue('phone'),
             birthday: this.getControlValue('birthday'),
             about: this.getControlValue('about')
-        } as User;
+        }
+        const formData = new FormData();
+
+        formData.append('user', JSON.stringify(userData));
+
+        if (avatar) {
+            formData.append('img', avatar, avatar.name);
+        }
+
+        return formData
     }
 
-    private getControlValue(controlName: string): string {
+    private getControlValue(controlName: string): any {
         return this.userInformationGroup.get(controlName).value;
     }
 
     private getUserData(): Promise<void> {
         this.isLoading = true;
-        return this.userService.getUserById(1).then(response => this.initilaizeFormGroup(response))
+        this.userId = +sessionStorage.getItem('userId');
+
+        if (!this.userId) {
+            this.router.navigate(['profile']);
+        }
+
+        return this.userService.getUserById(+this.userId).then(response => this.initilaizeFormGroup(response))
             .finally(() => this.isLoading = false);
     }
 
     private initilaizeFormGroup(userData: User): void {
         this.userInformationGroup = this.formBuilder.group({
-            firstName: new FormControl(userData?.firstName, {
+            firstName: new FormControl(userData.firstName, {
                 validators: [
                     Validators.required,
                     Validators.minLength(MIN_NAME_TEXT),

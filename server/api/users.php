@@ -1,23 +1,22 @@
 <?php
     header("Content-Type: application/json; charset=UTF-8");
-    header("Access-Control-Allow-Methods: GET, PUT");
+    header("Access-Control-Allow-Methods: GET, POST");
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
     require_once("../models/users.model.php");
 
     $users = new Users();
-    $data = json_decode(file_get_contents("php://input"));
 
     switch ($_SERVER['REQUEST_METHOD']) {
-        case 'PUT':
-            $result = $users->updateUser($data);
-
+        case 'POST':
+            $result = $users->updateUser($_FILES, $_POST["user"]);
+    
             if ($result) {
                 http_response_code(200);
-                echo json_encode($data);
             }  else {
                 http_response_code(400);
             }
+            echo json_encode($result);
             break;
 
         case 'GET':
@@ -28,13 +27,14 @@
 
                 if ($result) {
                     http_response_code(200);
-                    echo json_encode($result);
                 }  else {
                     http_response_code(400);
                 }
             } else {
                 http_response_code(404);
             }
+            echo json_encode($result);
+
             break;
     }
 ?>

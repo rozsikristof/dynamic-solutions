@@ -11,7 +11,7 @@ export class UserService {
         return axios.get(`${USERS_ROUTE}?id=${id}`).then(response => response.data);
     }
 
-    updateUser(user: User): Promise<User> {
-        return axios.put(USERS_ROUTE, user ).then(response => response.data);
+    updateUser(user: FormData): Promise<User> {
+        return axios.post(USERS_ROUTE, user).then(response => response.data);
     }
 }

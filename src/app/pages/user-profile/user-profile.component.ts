@@ -12,12 +12,18 @@ export class UserProfileComponent {
     user = {} as User;
     isLoading: boolean;
 
+    private userId: number;
+
     constructor(
         private readonly router: Router,
         private readonly userService: UserService
     ) {
+        // Imagine we had a successful login and we fetch the user info with the userId
+        this.userId = 1;
+        sessionStorage.setItem('userId', `${this.userId}`);
+
         this.isLoading = true;
-        this.userService.getUserById(1).then(response => this.user = response)
+        this.userService.getUserById(this.userId).then(response => this.user = response)
             .finally(() => {
                 this.isLoading = false
             });

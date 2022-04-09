@@ -25,17 +25,29 @@ class Users {
 
     public function getUserById($id) {
         if (isset($id)) {
-            $sql = "SELECT id, firstName, lastName, email, phone, birthday, about, img FROM " . $this->table . " WHERE id = '" . $id . "'";
+            $sql = "SELECT * FROM " . $this->table . " WHERE id = '" . $id . "'";
             return $this->conn->query($sql)->fetch_assoc();
         }
 
         return false;
     }
 
-    public function updateUser($data) {
-        if (isset($data->id)) {
-            $sql = "UPDATE " . $this->table . " SET firstName = '" . $data->firstName . "', lastName = '" . $data->lastName . "', email = '" . $data->email . "', phone = '" . $data->phone . "', birthday = '" . $data->birthday . "', about = '" . $data->about . "' WHERE id = '" . $data->id . "'";
-            return $this->conn->query($sql);
+    public function updateUser($files, $userData) {
+        $user = json_decode($userData);
+
+        if (isset($user->id)) {
+            $imageResult;
+
+            if (isset($files["img"])) {
+                $image = $files["img"];
+                $sql = "UPDATE " . $this->table . " SET img = '" . $image["tmp_name"] . "'";
+                $imageResult = $this->conn->query($sql);
+            } else {
+                $imageResult = true;
+            }
+
+            $sql = "UPDATE " . $this->table . " SET firstName = '" . $user->firstName . "', lastName = '" . $user->lastName . "', email = '" . $user->email . "', phone = '" . $user->phone . "', birthday = '" . $user->birthday . "', about = '" . $user->about . "' WHERE id = '" . $user->id . "'";
+            return ($this->conn->query($sql) && $imageResult);
         }
 
         return false;
