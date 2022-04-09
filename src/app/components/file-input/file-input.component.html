@@ -6,7 +6,7 @@
     <input
         type="file"
         accept=".jpg, .jpeg"
-        (change)="handleFileInput($event)"
+        [formControlName]="controlName"
     >
 </div>
 

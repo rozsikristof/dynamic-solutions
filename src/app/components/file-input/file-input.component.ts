@@ -6,10 +6,4 @@ import { InputComponent } from '../input/input.component';
     templateUrl: './file-input.component.html',
     styleUrls: ['./file-input.component.scss']
 })
-export class FileInputComponent extends InputComponent {
-
-    handleFileInput($event: any): void {
-        this.formControl.value;
-    }
-
-}
+export class FileInputComponent extends InputComponent {}

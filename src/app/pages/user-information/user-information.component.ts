@@ -29,10 +29,6 @@ export class UserInformationComponent {
         }
     }
 
-    handleFileInput(files: any): void {
-        console.log(files);
-    }
-
     private initilaizeFormGroup(): void {
         this.userInformationGroup = this.formBuilder.group({
             firstName: new FormControl('', {
