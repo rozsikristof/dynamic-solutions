@@ -21,8 +21,17 @@
 
         case 'GET':
             $id = $_GET["id"];
+            $image = $_GET["image"];
 
-            if ($id) {
+            if ($id && $image == "true") {
+                $result = $users->getUserAvatar($id);
+
+                if ($result) {
+                    http_response_code(200);
+                }  else {
+                    http_response_code(400);
+                }
+            } else if ($id && $image == "false") {
                 $result = $users->getUserbyId($id);
 
                 if ($result) {
@@ -33,8 +42,8 @@
             } else {
                 http_response_code(404);
             }
-            echo json_encode($result);
 
+            echo json_encode($result);
             break;
     }
 ?>

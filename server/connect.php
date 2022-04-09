@@ -4,10 +4,10 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 class Database {
-    private $host = "localhost";
-    private $username = "root";
-    private $password = "root";
-    private $name = "dynamic_solutions";
+    private $host = "185.111.89.131";
+    private $username = "rozsikr1_admin";
+    private $password = "Secret123.";
+    private $name = "rozsikr1_ds";
     public $conn;
 
     private static $instance = null;

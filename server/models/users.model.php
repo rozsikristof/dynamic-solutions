@@ -25,7 +25,16 @@ class Users {
 
     public function getUserById($id) {
         if (isset($id)) {
-            $sql = "SELECT * FROM " . $this->table . " WHERE id = '" . $id . "'";
+            $sql = "SELECT id, firstName, lastName, email, phone, birthday, about FROM " . $this->table . " WHERE id = '" . $id . "'";
+            return $this->conn->query($sql)->fetch_assoc();
+        }
+
+        return false;
+    }
+
+    public function getUserAvatar($id) {
+        if (isset($id)) {
+            $sql = "SELECT img FROM " . $this->table . " WHERE id = '" . $id . "'";
             return $this->conn->query($sql)->fetch_assoc();
         }
 
@@ -40,7 +49,8 @@ class Users {
 
             if (isset($files["img"])) {
                 $image = $files["img"];
-                $sql = "UPDATE " . $this->table . " SET img = '" . $image["tmp_name"] . "'";
+                echo json_encode($image);
+                $sql = "UPDATE " . $this->table . " SET img = '" . $image["name"] . "'";
                 $imageResult = $this->conn->query($sql);
             } else {
                 $imageResult = true;
