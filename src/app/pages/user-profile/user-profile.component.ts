@@ -18,7 +18,7 @@ export class UserProfileComponent {
         private readonly router: Router,
         private readonly userService: UserService
     ) {
-        // Imagine we had a successful login and we fetch the user info with the userId
+        // Imagine we had a successful login and we fetch the userId
         this.userId = 1;
         sessionStorage.setItem('userId', `${this.userId}`);
 
