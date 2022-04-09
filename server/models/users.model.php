@@ -33,7 +33,7 @@ class Users {
     }
 
     public function updateUser($data) {
-        if (isset($id)) {
+        if (isset($data->id)) {
             $sql = "UPDATE" . $this->table . " SET 
             firstName = '" . $data->firstname . "', 
             lastName = '" . $data->lastName . "', 

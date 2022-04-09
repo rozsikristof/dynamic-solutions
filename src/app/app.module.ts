@@ -13,6 +13,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
 import { FileInputComponent } from './components/file-input/file-input.component';
 import { FileDirectiveDirective } from './directives/file-directive.directive';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
     declarations: [
@@ -25,7 +26,8 @@ import { FileDirectiveDirective } from './directives/file-directive.directive';
         FooterComponent,
         TextareaComponent,
         FileInputComponent,
-        FileDirectiveDirective
+        FileDirectiveDirective,
+        LoadingComponent
     ],
     imports: [
         BrowserModule,

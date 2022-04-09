@@ -3,77 +3,79 @@
         <div class="user-information__inner">
             <h2 class="user-information__title">Edit user details</h2>
             <form class="user-information__form" [formGroup]="userInformationGroup" (ngSubmit)="updateUserInformation()">
-                <ds-input
-                    title="First name"
-                    placeholder="John"
-                    controlName="firstName"
-                    [required]="true"
-                    [group]="userInformationGroup"
-                    [validators]="[
-                        formValidators.required,
-                        formValidators.minlength,
-                        formValidators.maxlength
-                    ]"
-                ></ds-input>
-                <ds-input
-                    title="Last name"
-                    placeholder="Smith"
-                    controlName="lastName"
-                    [required]="true"
-                    [group]="userInformationGroup"
-                    [validators]="[
-                        formValidators.required,
-                        formValidators.minlength,
-                        formValidators.maxlength
-                    ]"
-                ></ds-input>
-                <ds-input
-                    title="Email"
-                    placeholder="john.smith@example.com"
-                    controlName="email"
-                    [required]="true"
-                    [group]="userInformationGroup"
-                    [validators]="[
-                        formValidators.required,
-                        formValidators.email
-                    ]"
-                ></ds-input>
-                <ds-input
-                    title="Phone number"
-                    placeholder="123456789"
-                    controlName="phone"
-                    [required]="true"
-                    [group]="userInformationGroup"
-                    [validators]="[
-                        formValidators.required
-                    ]"
-                ></ds-input>
-                <ds-input
-                    title="Date of birth"
-                    placeholder="1990.01.01."
-                    controlName="dateOfBirth"
-                    [required]="true"
-                    [group]="userInformationGroup"
-                    [validators]="[
-                        formValidators.required
-                    ]"
-                ></ds-input>
-                <ds-file-input
-                    title="Avatar"
-                    controlName="avatar"
-                    [group]="userInformationGroup"
-                ></ds-file-input>
-                <ds-textarea
-                    class="user-information__field--max-width"
-                    title="About"
-                    controlName="about"
-                    [required]="true"
-                    [group]="userInformationGroup"
-                    [validators]="[
-                        formValidators.required,
-                        formValidators.textarea_maxlength
-                    ]"
-                ></ds-textarea>
+                <div class="user-information__form-fields">
+                    <ds-input
+                        title="First name"
+                        placeholder="John"
+                        controlName="firstName"
+                        [required]="true"
+                        [group]="userInformationGroup"
+                        [validators]="[
+                            formValidators.required,
+                            formValidators.minlength,
+                            formValidators.maxlength
+                        ]"
+                    ></ds-input>
+                    <ds-input
+                        title="Last name"
+                        placeholder="Smith"
+                        controlName="lastName"
+                        [required]="true"
+                        [group]="userInformationGroup"
+                        [validators]="[
+                            formValidators.required,
+                            formValidators.minlength,
+                            formValidators.maxlength
+                        ]"
+                    ></ds-input>
+                    <ds-input
+                        title="Email"
+                        placeholder="john.smith@example.com"
+                        controlName="email"
+                        [required]="true"
+                        [group]="userInformationGroup"
+                        [validators]="[
+                            formValidators.required,
+                            formValidators.email
+                        ]"
+                    ></ds-input>
+                    <ds-input
+                        title="Phone number"
+                        placeholder="123456789"
+                        controlName="phone"
+                        [required]="true"
+                        [group]="userInformationGroup"
+                        [validators]="[
+                            formValidators.required
+                        ]"
+                    ></ds-input>
+                    <ds-input
+                        title="Date of birth"
+                        placeholder="1990.01.01."
+                        controlName="dateOfBirth"
+                        [required]="true"
+                        [group]="userInformationGroup"
+                        [validators]="[
+                            formValidators.required
+                        ]"
+                    ></ds-input>
+                    <ds-file-input
+                        title="Avatar"
+                        controlName="avatar"
+                        [group]="userInformationGroup"
+                    ></ds-file-input>
+                    <ds-textarea
+                        class="user-information__field--max-width"
+                        title="About"
+                        controlName="about"
+                        [required]="true"
+                        [group]="userInformationGroup"
+                        [validators]="[
+                            formValidators.required,
+                            formValidators.textarea_maxlength
+                        ]"
+                    ></ds-textarea>
+                </div>
                 <button
                     class="card__button"
                     type="submit"

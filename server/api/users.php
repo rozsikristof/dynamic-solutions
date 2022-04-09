@@ -27,10 +27,12 @@
 
                 if ($result) {
                     http_response_code(200);
-                    echo json_encode($data);
+                    echo json_encode($result);
                 }  else {
                     http_response_code(400);
                 }
+            } else {
+                http_response_code(400);
             }
     }
 ?>
