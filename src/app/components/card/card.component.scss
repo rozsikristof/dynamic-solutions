@@ -22,7 +22,7 @@
 .card--small {
     width: rem(680);
 
-    @include mediaSmall() {
+    @include mediaLarge() {
         width: 100%;
     }
 }

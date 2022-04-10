@@ -2,34 +2,41 @@
     <ds-card class="card--max-height card--small">
         <div class="user-profile__inner">
             <h2 class="user-profile__title">User profile</h2>
-            <img
-                class="user-profile__avatar"
-                src="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-High-Quality-Image.png"
-                alt="No avatar"
-            />
-            <div class="user-profile__grid">
-                <span class="user-profile__grid-item">First Name:</span>
-                <span class="user-profile__grid-item">John</span>
-                <span class="user-profile__grid-item">Last Name:</span>
-                <span class="user-profile__grid-item">Smith</span>
-                <span class="user-profile__grid-item">Email:</span>
-                <span class="user-profile__grid-item">john.smith@example.com</span>
-                <span class="user-profile__grid-item">Phone:</span>
-                <span class="user-profile__grid-item">123445678</span>
-                <span class="user-profile__grid-item">Birthday:</span>
-                <span class="user-profile__grid-item">1990.01.01.</span>
-                <span class="user-profile__grid-item">About:</span>
-                <p class="user-profile__grid-item user-profile__about">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-            </div>
-            <button
-                class="card__button"
-                aria-label="Edit details on user information page"
-                (click)="navigateToUserInfoPage()"
-            >
-                Edit details
-            </button>
+            <ds-loading *ngIf="isLoading"></ds-loading>
+            <ng-container *ngIf="!isLoading">
+                <img
+                    *ngIf="!user.image"
+                    class="user-profile__avatar"
+                    src="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-High-Quality-Image.png"
+                    alt="No avatar"
+                />
+                <img
+                    class="user-profile__avatar user-profile__avatar--round"
+                    [src]="user.image"
+                    alt="User avatar"
+                />
+                <div class="user-profile__grid">
+                    <span class="user-profile__grid-item">First Name:</span>
+                    <span class="user-profile__grid-item">{{ user.firstName }}</span>
+                    <span class="user-profile__grid-item">Last Name:</span>
+                    <span class="user-profile__grid-item">{{ user.lastName }}</span>
+                    <span class="user-profile__grid-item">Email:</span>
+                    <span class="user-profile__grid-item">{{ user.email }}</span>
+                    <span class="user-profile__grid-item">Phone:</span>
+                    <span class="user-profile__grid-item">{{ user.phone }}</span>
+                    <span class="user-profile__grid-item">Birthday:</span>
+                    <span class="user-profile__grid-item">{{ user.birthday }}</span>
+                    <span class="user-profile__grid-item">About:</span>
+                    <p class="user-profile__grid-item user-profile__about">{{ user.about }}</p>
+                </div>
+                <button
+                    class="card__button"
+                    aria-label="Edit details on user information page"
+                    (click)="navigateToUserInfoPage()"
+                >
+                    Edit details
+                </button>
+            </ng-container>
         </div>
     </ds-card>
 </div>

@@ -25,15 +25,36 @@
 }
 
 .user-information__form {
-    @include flex;
+    @include flex($direction: column);
 
     height: 100%;
+}
+
+.user-information__form-fields {
+    @include flex($align-items: center);
+
     justify-content: space-between;
     flex-wrap: wrap;
 
+    ds-input ~ ds-input {
+        margin-bottom: rem(15);
+    }
+
+    ds-file-input {
+        margin-bottom: rem(15);
+    }
+
     @include mediaSmall() {
-        flex-direction: column;
-        align-items: center;
+        justify-content: center;
         flex-wrap: nowrap;
+        flex-direction: column;
+
+        ds-input ~ ds-input {
+            margin-bottom: rem(10);
+        }
+    
+        ds-file-input {
+            margin-bottom: rem(10);
+        }
     }
 }

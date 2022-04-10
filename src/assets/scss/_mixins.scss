@@ -1,6 +1,6 @@
 @import 'functions';
 
-@mixin flex($align-items: baseline, $direction: row) {
+@mixin flex($align-items: normal, $direction: row) {
     display: flex;
     align-items: $align-items;
     flex-direction: $direction;
@@ -39,7 +39,7 @@
 }
 
 @mixin mediaExtraSmall() {
-    @media only screen and (max-width: 280px) {
+    @media only screen and (max-width: 330px) {
         @content;
     }
 }
