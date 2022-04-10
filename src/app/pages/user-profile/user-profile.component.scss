@@ -12,6 +12,11 @@
     @include flex($align-items: center);
 
     margin-top: rem(100);
+
+    @include mediaLarge() {
+        margin-top: rem(20);
+        flex-direction: column;
+    }
 }
 
 .user-profile__inner {

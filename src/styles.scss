@@ -25,6 +25,11 @@ body {
     margin-left: auto;
     display: block;
 
+    @include mediaLarge() {
+        max-width: rem(150);
+        max-height: rem(150);
+    }
+
     @include mediaSmall() {
         align-self: center;
     }
