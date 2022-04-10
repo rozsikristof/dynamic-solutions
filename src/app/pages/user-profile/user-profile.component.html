@@ -10,7 +10,11 @@
                     src="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-High-Quality-Image.png"
                     alt="No avatar"
                 />
-                <img [src]="user.image" />
+                <img
+                    class="user-profile__avatar user-profile__avatar--round"
+                    [src]="user.image"
+                    alt="User avatar"
+                />
                 <div class="user-profile__grid">
                     <span class="user-profile__grid-item">First Name:</span>
                     <span class="user-profile__grid-item">{{ user.firstName }}</span>
