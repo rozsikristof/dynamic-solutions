@@ -19,7 +19,8 @@
                         [validators]="[
                             formValidators.required,
                             formValidators.minlength,
-                            formValidators.maxlength
+                            formValidators.maxlength,
+                            formValidators.specialchar
                         ]"
                     ></ds-input>
                     <ds-input
@@ -31,7 +32,8 @@
                         [validators]="[
                             formValidators.required,
                             formValidators.minlength,
-                            formValidators.maxlength
+                            formValidators.maxlength,
+                            formValidators.specialchar
                         ]"
                     ></ds-input>
                     <ds-input
@@ -46,6 +48,7 @@
                         ]"
                     ></ds-input>
                     <ds-input
+                        dsNumbersOnly
                         title="Phone number"
                         placeholder="123456789"
                         controlName="phone"

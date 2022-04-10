@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { MAX_ABOUT_TEXT, MAX_NAME_TEXT, MIN_NAME_TEXT } from 'src/app/constants/constants';
 import { FormValidators } from 'src/app/constants/form-validators';
 import { User } from 'src/app/interfaces/user.interface';
-import { maxFileSize, markAllAsDirty } from 'src/app/utils/form-validation.util';
+import { maxFileSize, markAllAsDirty, noSpeicalCharacters } from 'src/app/utils/form-validation.util';
 import { UserService } from 'src/services/user.service';
 
 
@@ -116,7 +116,8 @@ export class UserInformationComponent {
                 validators: [
                     Validators.required,
                     Validators.minLength(MIN_NAME_TEXT),
-                    Validators.maxLength(MAX_NAME_TEXT)
+                    Validators.maxLength(MAX_NAME_TEXT),
+                    noSpeicalCharacters
                 ],
                 updateOn: 'submit'
             }),
@@ -124,7 +125,8 @@ export class UserInformationComponent {
                 validators: [
                     Validators.required,
                     Validators.min(MIN_NAME_TEXT),
-                    Validators.max(MAX_NAME_TEXT)
+                    Validators.max(MAX_NAME_TEXT),
+                    noSpeicalCharacters
                 ],
                 updateOn: 'submit'
             }),

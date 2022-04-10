@@ -14,3 +14,17 @@ export const maxFileSize = (control: AbstractControl): { [key: string]: boolean 
 
     return null;
 }
+
+export const noSpeicalCharacters = (control: AbstractControl): { [key: string]: boolean } | null => {
+    if (control.value) {
+        const regex = /^[A-Za-z0-9]+$/;
+
+        if (regex.test(control.value)) {
+            return null;
+        }
+
+        return { 'specialchar': true };
+    }
+
+    return null;
+}
