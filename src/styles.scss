@@ -1,3 +1,5 @@
+@import 'functions';
+
 * {
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
@@ -12,4 +14,13 @@ body {
     height: 100%;
     width: 100%;
     margin: 0;
+}
+
+.image {
+    clip-path: circle();
+    max-width: rem(200);
+    max-height: rem(200);
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
 }

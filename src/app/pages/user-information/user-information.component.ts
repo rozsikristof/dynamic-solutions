@@ -4,8 +4,9 @@ import { Router } from '@angular/router';
 import { MAX_ABOUT_TEXT, MAX_NAME_TEXT, MIN_NAME_TEXT } from 'src/app/constants/constants';
 import { FormValidators } from 'src/app/constants/form-validators';
 import { User } from 'src/app/interfaces/user.interface';
-import { markAllAsDirty } from 'src/app/utils/form-validation.util';
+import { maxFileSize, markAllAsDirty } from 'src/app/utils/form-validation.util';
 import { UserService } from 'src/services/user.service';
+
 
 @Component({
     selector: 'ds-user-information',
@@ -16,6 +17,8 @@ export class UserInformationComponent {
     userInformationGroup: FormGroup;
     formValidators = FormValidators;
     isLoading: boolean;
+    userAvatarUrl: string;
+    isFileReaderLoading: boolean;
 
     private userId: number;
 
@@ -40,6 +43,23 @@ export class UserInformationComponent {
                 });
         } else {
             markAllAsDirty(this.userInformationGroup);
+        }
+    }
+
+    previewSelectedAvatar(selecetedImage: File): void {
+        const reader = new FileReader();
+        reader.readAsDataURL(selecetedImage);
+
+        reader.onloadstart = () => {
+            this.isFileReaderLoading = true;
+        }
+
+        reader.onloadend = () => {
+            this.isFileReaderLoading = false;
+        }
+
+        reader.onload = () => {
+            this.userAvatarUrl = <string>reader.result;
         }
     }
 
@@ -81,6 +101,8 @@ export class UserInformationComponent {
     }
 
     private initilaizeFormGroup(userData: User): void {
+        this.userAvatarUrl = userData.image;
+
         this.userInformationGroup = this.formBuilder.group({
             firstName: new FormControl(userData.firstName, {
                 validators: [
@@ -125,6 +147,9 @@ export class UserInformationComponent {
                 updateOn: 'submit'
             }),
             avatar: new FormControl('', {
+                validators: [
+                    maxFileSize
+                ],
                 updateOn: 'submit'
             })
         });

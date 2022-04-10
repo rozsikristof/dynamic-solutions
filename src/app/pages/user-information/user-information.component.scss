@@ -15,8 +15,12 @@
     height: 100%;
 }
 
-.user-information__field--max-width {
+.user-information__text-area {
     width: 100%;
+}
+
+.user-information__text-area--avatar {
+    width: rem(320);
 }
 
 .user-information__drag-and-drop {
@@ -31,7 +35,7 @@
 }
 
 .user-information__form-fields {
-    @include flex($align-items: center);
+    @include flex;
 
     justify-content: space-between;
     flex-wrap: wrap;
@@ -57,4 +61,24 @@
             margin-bottom: rem(10);
         }
     }
+}
+
+.user-information__last-row {
+    @include flex($align-items: center);
+
+    justify-content: space-between;
+    width: 100%;
+
+    @include mediaSmall() {
+        justify-content: center;
+        flex-direction: column-reverse;
+
+        .image {
+            margin-bottom: rem(10);
+        }
+    }
+}
+
+.user-information__avatar-container {
+    width: rem(320);
 }

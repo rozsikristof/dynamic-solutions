@@ -1,5 +1,5 @@
 <div class="user-information">
-    <ds-card class="card--max-height card--wide">
+    <ds-card class="card--max-height">
         <div class="user-information__inner">
             <h2 class="user-information__title">Edit user details</h2>
             <ds-loading *ngIf="isLoading"></ds-loading>
@@ -69,23 +69,39 @@
                         title="Avatar"
                         controlName="avatar"
                         [group]="userInformationGroup"
-                    ></ds-file-input>
-                    <ds-textarea
-                        class="user-information__field--max-width"
-                        title="About"
-                        controlName="about"
-                        [required]="true"
-                        [group]="userInformationGroup"
                         [validators]="[
-                            formValidators.required,
-                            formValidators.textarea_maxlength
+                            formValidators.size
                         ]"
-                    ></ds-textarea>
+                        (selectedFile)="previewSelectedAvatar($event)"
+                    ></ds-file-input>
+                    <div class="user-information__last-row">
+                        <ds-textarea
+                            class="user-information__text-area"
+                            [class.user-information__text-area--avatar]="userAvatarUrl"
+                            title="About"
+                            controlName="about"
+                            [required]="true"
+                            [group]="userInformationGroup"
+                            [validators]="[
+                                formValidators.required,
+                                formValidators.textarea_maxlength
+                            ]"
+                        ></ds-textarea>
+                        <div class="user-information__avatar-container">
+                            <ds-loading *ngIf="isFileReaderLoading"></ds-loading>
+                            <img
+                                *ngIf="userAvatarUrl && !isFileReaderLoading"
+                                class="image"
+                                [src]="userAvatarUrl"
+                            />
+                        </div>
+                    </div>
                 </div>
                 <button
                     class="card__button"
                     type="submit"
                     aria-label="Save changes"
+                    [disabled]="isFileReaderLoading"
                 >
                     Save changes
                 </button>

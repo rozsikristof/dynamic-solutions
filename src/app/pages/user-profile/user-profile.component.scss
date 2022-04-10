@@ -8,6 +8,12 @@
     align-self: center;
 }
 
+.user-profile__info {
+    @include flex($align-items: center);
+
+    margin-top: rem(100);
+}
+
 .user-profile__inner {
     @include flex($direction: column);
 
@@ -26,7 +32,7 @@
 }
 
 .user-profile__avatar--round {
-    border-radius: 50%;
+    margin-left: 0;
 }
 
 .user-profile__grid {
@@ -39,7 +45,7 @@
 }
 
 .user-profile__grid-item {
-    padding: rem(8);
+    padding: rem(15);
 
     &:nth-child(odd) {
         font-weight: bold;

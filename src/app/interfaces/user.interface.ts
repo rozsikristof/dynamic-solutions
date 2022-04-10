@@ -6,5 +6,5 @@ export interface User {
     phone: string;
     birthday: string;
     about: string;
-    image?: any;
+    image?: string;
 }
