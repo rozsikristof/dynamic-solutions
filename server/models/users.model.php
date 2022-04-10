@@ -1,8 +1,5 @@
 <?php
 
-header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-
 require_once('../connect.php');
 
 class Users {
@@ -16,7 +13,7 @@ class Users {
     private $phone;
     private $birthday;
     private $about;
-    private $img;
+    private $image;
 
     public function __construct() {
         $this->db = Database::getInstance();
@@ -25,39 +22,32 @@ class Users {
 
     public function getUserById($id) {
         if (isset($id)) {
-            $sql = "SELECT id, firstName, lastName, email, phone, birthday, about FROM " . $this->table . " WHERE id = '" . $id . "'";
-            return $this->conn->query($sql)->fetch_assoc();
+            $sql = "SELECT * FROM " . $this->table . " WHERE id = '" . $id . "'";
+            $userInfo = $this->conn->query($sql)->fetch_assoc();
+
+            $userInfo["image"] = base64_encode($userInfo["image"]);
+
+            return $userInfo;
         }
 
         return false;
     }
 
-    public function getUserAvatar($id) {
-        if (isset($id)) {
-            $sql = "SELECT img FROM " . $this->table . " WHERE id = '" . $id . "'";
-            return $this->conn->query($sql)->fetch_assoc();
-        }
-
-        return false;
-    }
-
-    public function updateUser($files, $userData) {
-        $user = json_decode($userData);
-
+    public function updateUser($user, $image) {
         if (isset($user->id)) {
             $imageResult;
+            $sql = "UPDATE " . $this->table . " SET firstName = '" . $user->firstName . "', lastName = '" . $user->lastName . "', email = '" . $user->email . "', phone = '" . $user->phone . "', birthday = '" . $user->birthday . "', about = '" . $user->about . "' WHERE id = '" . $user->id . "'";
+            $result = $this->conn->query($sql);
 
-            if (isset($files["img"])) {
-                $image = $files["img"];
-                echo json_encode($image);
-                $sql = "UPDATE " . $this->table . " SET img = '" . $image["name"] . "'";
+            if (isset($image["tmp_name"])) {
+                $imageData = addslashes(file_get_contents($image["tmp_name"]));
+                $sql = "UPDATE " . $this->table . " SET image = '" . $imageData . "' WHERE id = '" . $user->id . "'";
                 $imageResult = $this->conn->query($sql);
             } else {
                 $imageResult = true;
             }
 
-            $sql = "UPDATE " . $this->table . " SET firstName = '" . $user->firstName . "', lastName = '" . $user->lastName . "', email = '" . $user->email . "', phone = '" . $user->phone . "', birthday = '" . $user->birthday . "', about = '" . $user->about . "' WHERE id = '" . $user->id . "'";
-            return ($this->conn->query($sql) && $imageResult);
+            return ($result && $imageResult);
         }
 
         return false;

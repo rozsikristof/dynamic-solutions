@@ -1,8 +1,5 @@
 <?php
 
-header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-
 class Database {
     private $host = "185.111.89.131";
     private $username = "rozsikr1_admin";

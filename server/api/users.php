@@ -9,7 +9,14 @@
 
     switch ($_SERVER['REQUEST_METHOD']) {
         case 'POST':
-            $result = $users->updateUser($_FILES, $_POST["user"]);
+            $image;
+            $user = json_decode($_POST["user"]);
+
+            if (isset($_FILES["image"])) {
+                $image = $_FILES["image"];
+            }
+
+            $result = $users->updateUser($user, $image);
     
             if ($result) {
                 http_response_code(200);
@@ -21,17 +28,8 @@
 
         case 'GET':
             $id = $_GET["id"];
-            $image = $_GET["image"];
 
-            if ($id && $image == "true") {
-                $result = $users->getUserAvatar($id);
-
-                if ($result) {
-                    http_response_code(200);
-                }  else {
-                    http_response_code(400);
-                }
-            } else if ($id && $image == "false") {
+            if ($id) {
                 $result = $users->getUserbyId($id);
 
                 if ($result) {

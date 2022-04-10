@@ -30,16 +30,23 @@ export class UserInformationComponent {
     updateUserInformation(): void {
         if (this.userInformationGroup.valid) {
             this.isLoading = true;
-            this.userService.updateUser(this.updatedUserDetails).then(() => this.router.navigate(['profile']))
-                .finally(() => this.isLoading = false);
+
+            this.userService.updateUser(this.updatedUserDetails)
+                .then(() => {
+                    this.router.navigate(['profile'])
+                })
+                .finally(() => {
+                    this.isLoading = false;
+                });
         } else {
             markAllAsDirty(this.userInformationGroup);
         }
     }
 
     private get updatedUserDetails(): FormData {
+        const formData = new FormData();
         const avatar: File = this.getControlValue('avatar');
-        const userData = {
+        const userDetails: User = {
             id: this.userId,
             firstName: this.getControlValue('firstName'),
             lastName: this.getControlValue('lastName'),
@@ -48,15 +55,13 @@ export class UserInformationComponent {
             birthday: this.getControlValue('birthday'),
             about: this.getControlValue('about')
         }
-        const formData = new FormData();
-
-        formData.append('user', JSON.stringify(userData));
 
         if (avatar) {
-            formData.append('img', avatar, avatar.name);
+            formData.append('image', avatar, avatar.name);
         }
 
-        return formData
+        formData.append('user', JSON.stringify(userDetails));
+        return formData;
     }
 
     private getControlValue(controlName: string): any {

@@ -5,12 +5,12 @@
             <ds-loading *ngIf="isLoading"></ds-loading>
             <ng-container *ngIf="!isLoading">
                 <img
-                    *ngIf="!user.img"
+                    *ngIf="!user.image"
                     class="user-profile__avatar"
                     src="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-High-Quality-Image.png"
                     alt="No avatar"
                 />
-                <img [src]="image" />
+                <img [src]="user.image" />
                 <div class="user-profile__grid">
                     <span class="user-profile__grid-item">First Name:</span>
                     <span class="user-profile__grid-item">{{ user.firstName }}</span>
