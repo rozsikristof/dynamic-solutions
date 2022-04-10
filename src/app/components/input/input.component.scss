@@ -9,10 +9,6 @@
     }
 }
 
-.input__wrapper--max-width {
-    width: 100%;
-}
-
 .input__header {
     @include flex(center);
     justify-content: space-between;

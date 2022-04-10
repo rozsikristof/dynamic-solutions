@@ -8,25 +8,31 @@
     align-self: center;
 }
 
+.user-profile__info {
+    @include flex($align-items: center);
+
+    margin-top: rem(100);
+
+    @include mediaLarge() {
+        margin-top: rem(20);
+        flex-direction: column;
+    }
+}
+
 .user-profile__inner {
     @include flex($direction: column);
 
     height: 100%;
 }
 
-.user-profile__avatar {
+.user-profile__no-avatar {
     width: rem(150);
     height: rem(150);
     margin-bottom: rem(20);
-    border: rem(3) solid black;
 
     @include mediaSmall() {
         align-self: center;
     }
-}
-
-.user-profile__avatar--round {
-    border-radius: 50%;
 }
 
 .user-profile__grid {
@@ -39,7 +45,7 @@
 }
 
 .user-profile__grid-item {
-    padding: rem(8);
+    padding: rem(15);
 
     &:nth-child(odd) {
         font-weight: bold;
