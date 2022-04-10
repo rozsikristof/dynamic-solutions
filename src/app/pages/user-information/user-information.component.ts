@@ -96,15 +96,23 @@ export class UserInformationComponent {
             this.router.navigate(['profile']);
         }
 
-        return this.userService.getUserById(+this.userId).then(response => this.initilaizeFormGroup(response))
-            .finally(() => this.isLoading = false);
+        return this.userService.getUserById(+this.userId)
+            .then(response => {
+                this.initilaizeFormGroup(response);
+            })
+            .catch(() => {
+                this.initilaizeFormGroup();
+            })
+            .finally(() =>{
+                this.isLoading = false;
+            });
     }
 
-    private initilaizeFormGroup(userData: User): void {
+    private initilaizeFormGroup(userData = {} as User): void {
         this.userAvatarUrl = userData.image;
 
         this.userInformationGroup = this.formBuilder.group({
-            firstName: new FormControl(userData.firstName, {
+            firstName: new FormControl(userData?.firstName, {
                 validators: [
                     Validators.required,
                     Validators.minLength(MIN_NAME_TEXT),
@@ -112,7 +120,7 @@ export class UserInformationComponent {
                 ],
                 updateOn: 'submit'
             }),
-            lastName: new FormControl(userData?.lastName, {
+            lastName: new FormControl(userData.lastName, {
                 validators: [
                     Validators.required,
                     Validators.min(MIN_NAME_TEXT),
@@ -120,26 +128,26 @@ export class UserInformationComponent {
                 ],
                 updateOn: 'submit'
             }),
-            email: new FormControl(userData?.email, {
+            email: new FormControl(userData.email, {
                 validators: [
                     Validators.required,
                     Validators.email
                 ],
                 updateOn: 'submit'
             }),
-            phone: new FormControl(userData?.phone, {
+            phone: new FormControl(userData.phone, {
                 validators: [
                     Validators.required
                 ],
                 updateOn: 'submit'
             }),
-            birthday: new FormControl(userData?.birthday, {
+            birthday: new FormControl(userData.birthday, {
                 validators: [
                     Validators.required,
                 ],
                 updateOn: 'submit'
             }),
-            about: new FormControl(userData?.about, {
+            about: new FormControl(userData.about, {
                 validators: [
                     Validators.required,
                     Validators.maxLength(MAX_ABOUT_TEXT)

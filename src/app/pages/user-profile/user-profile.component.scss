@@ -20,19 +20,14 @@
     height: 100%;
 }
 
-.user-profile__avatar {
+.user-profile__no-avatar {
     width: rem(150);
     height: rem(150);
     margin-bottom: rem(20);
-    border: rem(3) solid black;
 
     @include mediaSmall() {
         align-self: center;
     }
-}
-
-.user-profile__avatar--round {
-    margin-left: 0;
 }
 
 .user-profile__grid {

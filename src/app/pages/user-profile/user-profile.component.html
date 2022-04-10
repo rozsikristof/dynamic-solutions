@@ -6,18 +6,18 @@
             <ng-container *ngIf="!isLoading">
                 <div class="user-profile__info">
                     <img
-                        *ngIf="!user.image"
-                        class="user-profile__avatar"
+                        *ngIf="!user?.image"
+                        class="image user-profile__no-avatar"
                         src="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-High-Quality-Image.png"
                         alt="No avatar"
                     />
                     <img
-                        *ngIf="user.image"
+                        *ngIf="user?.image"
                         class="image"
-                        [src]="user.image"
+                        [src]="user?.image"
                         alt="User avatar"
                     />
-                    <div class="user-profile__grid">
+                    <div *ngIf="user" class="user-profile__grid">
                         <span class="user-profile__grid-item">First Name:</span>
                         <span class="user-profile__grid-item">{{ user.firstName }}</span>
                         <span class="user-profile__grid-item">Last Name:</span>

@@ -9,7 +9,7 @@ import { UserService } from 'src/services/user.service';
     styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent {
-    user = {} as User;
+    user: User;
     isLoading: boolean;
 
     private userId: number;
