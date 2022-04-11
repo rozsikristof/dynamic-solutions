@@ -5,7 +5,7 @@
 
     height: rem(60);
     justify-content: space-between;
-    background-color: #c7c6c6;
+    background-color: skyblue;
 }
 
 .header__logo {
@@ -32,6 +32,6 @@
     @include mediaSmall() {
         width: 100%;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-evenly;
     }
 }

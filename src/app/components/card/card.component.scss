@@ -1,12 +1,11 @@
-@import 'mixins';
-@import 'variables';
+@import 'index';
 
 .card {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     width: rem(750);
     padding: rem(20) rem(40) rem(20) rem(40);
     height: 100%;
-    background-color: rgb(245, 245, 245);
+    background-color: aliceblue;
     overflow-y: auto;
 
     @include mediaSmall() {
@@ -26,8 +25,13 @@
 .card__button {
     @include buttonBase;
 
-    border-radius: 0;
+    align-self: center;
+    border-radius: rem(5);
     border-color: $button-border;
-    width: 100%;
+    width: $form-field-width;
     margin-top: auto;
+
+    &:hover {
+        @include buttonHover;
+    }
 }

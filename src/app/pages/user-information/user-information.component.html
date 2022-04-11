@@ -65,7 +65,8 @@
                         [required]="true"
                         [group]="userInformationGroup"
                         [validators]="[
-                            formValidators.required
+                            formValidators.required,
+                            formValidators.dateformat
                         ]"
                     ></ds-input>
                     <ds-file-input
@@ -95,13 +96,17 @@
                             <img
                                 *ngIf="userAvatarUrl && !isFileReaderLoading"
                                 class="image"
+                                [class.user-information__avatar-container--no-corner]="avatarBorderState"
+                                alt="To be uploaded avatar"
+                                title="Click to see without round corners"
                                 [src]="userAvatarUrl"
+                                (click)="changeAvatarBorder()"
                             />
                         </div>
                     </div>
                 </div>
                 <button
-                    class="card__button"
+                    class="card__button user-information__save-changes"
                     type="submit"
                     aria-label="Save changes"
                     [disabled]="isFileReaderLoading"

@@ -5,5 +5,6 @@ export const FormValidators = {
     textarea_maxlength: { validator: 'maxlength', message: 'Maximum 200 characters allowed' },
     email: { validator: 'email', message: 'Invalid email format' },
     size: { validator: 'size', message: 'File too large! (Maxiumum 64kB)' },
-    specialchar: { validator: 'specialchar', message: 'No special characters allowed' }
+    specialchar: { validator: 'specialchar', message: 'No special characters allowed' },
+    dateformat: { validator: 'dateformat', message: 'Invalid date format' }
 }

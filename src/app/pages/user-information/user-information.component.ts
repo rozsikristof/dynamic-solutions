@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { MAX_ABOUT_TEXT, MAX_NAME_TEXT, MIN_NAME_TEXT } from 'src/app/constants/constants';
 import { FormValidators } from 'src/app/constants/form-validators';
 import { User } from 'src/app/interfaces/user.interface';
-import { maxFileSize, markAllAsDirty, noSpeicalCharacters } from 'src/app/utils/form-validation.util';
+import { maxFileSize, markAllAsDirty, noSpeicalCharacters, isDateValid } from 'src/app/utils/form-validation.util';
 import { UserService } from 'src/services/user.service';
 
 
@@ -19,6 +19,7 @@ export class UserInformationComponent {
     isLoading: boolean;
     userAvatarUrl: string;
     isFileReaderLoading: boolean;
+    avatarBorderState: boolean;
 
     private userId: number;
 
@@ -56,11 +57,19 @@ export class UserInformationComponent {
 
         reader.onloadend = () => {
             this.isFileReaderLoading = false;
+            const avatarControl = this.userInformationGroup.get('avatar');
+
+            avatarControl.setErrors({});
+            avatarControl.markAsPristine();
         }
 
         reader.onload = () => {
             this.userAvatarUrl = <string>reader.result;
         }
+    }
+
+    changeAvatarBorder(): void {
+        this.avatarBorderState = !this.avatarBorderState;
     }
 
     private get updatedUserDetails(): FormData {
@@ -146,6 +155,7 @@ export class UserInformationComponent {
             birthday: new FormControl(userData.birthday, {
                 validators: [
                     Validators.required,
+                    isDateValid
                 ],
                 updateOn: 'submit'
             }),
