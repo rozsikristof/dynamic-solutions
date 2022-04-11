@@ -7,7 +7,7 @@ import { UserService } from 'src/app/services/user.service';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    private userId = 1;
+    private userId = 1; // Hard coded user ID, should be received after a successful login
 
     constructor(private readonly userService: UserService) {
          // Getting the user data from the PHP server, makes sense to call this here, in the parent component and store it in the service,
