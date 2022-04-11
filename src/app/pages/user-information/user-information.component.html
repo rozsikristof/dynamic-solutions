@@ -1,8 +1,8 @@
 <div class="user-information">
     <ds-card class="card--max-height">
+        <ds-loading *ngIf="isLoading"></ds-loading>
         <div *ngIf="!isLoading" class="user-information__inner">
             <h1 class="user-information__title">Edit user details</h1>
-            <ds-loading *ngIf="isLoading"></ds-loading>
             <form
                 *ngIf="userInformationGroup"
                 class="user-information__form"
