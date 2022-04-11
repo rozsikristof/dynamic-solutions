@@ -18,6 +18,7 @@
                 $image = null;
             }
 
+            // Update user data which was received from the FE
             $result = $users->updateUser($user, $image);
     
             if ($result) {

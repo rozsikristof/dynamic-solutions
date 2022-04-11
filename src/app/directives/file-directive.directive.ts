@@ -1,6 +1,7 @@
 import { Directive, HostListener } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+// Directive for the <input type="file"> so it can be used as a FormControl
 @Directive({
     selector: 'input[type=file]',
     providers: [{

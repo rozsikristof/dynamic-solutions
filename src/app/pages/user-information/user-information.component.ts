@@ -30,6 +30,8 @@ export class UserInformationComponent implements OnDestroy {
         private readonly router: Router,
         private readonly userService: UserService
     ) {
+        // Here to store the user data in a variable is not necesarry, that's why we need to subscribe to the observable, because we just need it temporary.
+        // the data will be stored in the FormGroup
         this.userSubscription = this.userService.getCurrentuser$.subscribe(user => {
             if (user) {
                 this.initilaizeFormGroup(user);
@@ -47,7 +49,7 @@ export class UserInformationComponent implements OnDestroy {
         if (this.userInformationGroup.valid) {
             this.isLoading = true;
 
-            this.userService.updateUser(this.updatedUserDetails)
+            this.userService.updateUser(this.updatedUserDetails) // Send the user data if the form is valid
                 .then(() => {
                     this.router.navigate(['profile']);
                 })
@@ -55,7 +57,7 @@ export class UserInformationComponent implements OnDestroy {
                     this.isLoading = false;
                 });
         } else {
-            markAllAsDirty(this.userInformationGroup);
+            markAllAsDirty(this.userInformationGroup); // Triggering of the form validations
         }
     }
 
@@ -126,8 +128,8 @@ export class UserInformationComponent implements OnDestroy {
             lastName: new FormControl(user.lastName, {
                 validators: [
                     Validators.required,
-                    Validators.min(MIN_NAME_TEXT),
-                    Validators.max(MAX_NAME_TEXT),
+                    Validators.minLength(MIN_NAME_TEXT),
+                    Validators.maxLength(MAX_NAME_TEXT),
                     noSpeicalCharacters
                 ],
                 updateOn: 'submit'
@@ -141,7 +143,9 @@ export class UserInformationComponent implements OnDestroy {
             }),
             phone: new FormControl(user.phone, {
                 validators: [
-                    Validators.required
+                    Validators.required,
+                    Validators.minLength(MIN_NAME_TEXT),
+                    Validators.maxLength(MAX_NAME_TEXT),
                 ],
                 updateOn: 'submit'
             }),

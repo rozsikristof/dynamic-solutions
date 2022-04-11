@@ -1,7 +1,7 @@
 <div class="user-information">
     <ds-card class="card--max-height">
-        <ds-loading *ngIf="isLoading"></ds-loading>
-        <div *ngIf="!isLoading" class="user-information__inner">
+        <ds-loading *ngIf="isLoading"></ds-loading> <!-- Loading spinner is shown after the user updated their data -->
+        <div *ngIf="!isLoading" class="user-information__inner"> <!-- Show the content after the loading is done -->
             <h1 class="user-information__title">Edit user details</h1>
             <form
                 *ngIf="userInformationGroup"
@@ -55,7 +55,9 @@
                         [required]="true"
                         [group]="userInformationGroup"
                         [validators]="[
-                            formValidators.required
+                            formValidators.required,
+                            formValidators.minlength,
+                            formValidators.maxlength
                         ]"
                     ></ds-input>
                     <ds-input

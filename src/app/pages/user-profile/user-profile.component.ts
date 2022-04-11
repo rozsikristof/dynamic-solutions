@@ -16,6 +16,7 @@ export class UserProfileComponent {
         private readonly router: Router,
         private readonly userService: UserService
     ) {
+        // No need to subscribe to the observable if we don't want to work with it directly, we can just get the observable itself and render the data with the async pipe
         this.user = this.userService.getCurrentuser$;
     }
 

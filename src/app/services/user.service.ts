@@ -10,6 +10,7 @@ const IMAGE_URL_REFIX = 'data:image/jpg;base64,';
     providedIn: 'root'
 })
 export class UserService {
+    // Init of our user data observable so it can be used in the sub pages
     private currentUser$: BehaviorSubject<User> = new BehaviorSubject<User>(null);
     private user: User;
 
@@ -26,7 +27,7 @@ export class UserService {
     }
 
     updateUser(user: FormData): Promise<void> {
-        // Wanted to use PUT here, since it's an update in the databse, but the PHP server cannot get the data if the request is set as PUT. Had to use POST.
+        // Wanted to use PUT here, since it's an update in the databse, but the PHP server cannot get the image data if the request is set as PUT. Had to use POST.
         return axios.post(USERS_ROUTE, user).then(response => {
             return this.readUserAvatar(response.data);
         }).then(userAvatar => {
@@ -43,7 +44,7 @@ export class UserService {
         this.user = user;
 
         if (this.user.image) {
-            const imageBlob = new Blob([user.image], { type: 'image/jpg' });
+            const imageBlob = new Blob([user.image], { type: 'image/jpg' }); // Need to create a blob from the received data, so the reader can work with it
 
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
@@ -51,7 +52,7 @@ export class UserService {
 
                 reader.onerror = reject;
                 reader.onloadend = () => {
-                    return resolve(`${IMAGE_URL_REFIX}${reader.result}`);
+                    return resolve(`${IMAGE_URL_REFIX}${reader.result}`); // 
                 }
             });
         }

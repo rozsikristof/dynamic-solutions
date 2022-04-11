@@ -18,7 +18,7 @@ const routes: Routes = [
         component: UserInformationComponent
     },
     {
-        path: '**',
+        path: '**', // Wildcard: no matching path will redirect to the profile page
         redirectTo: 'profile'
     }
 ]

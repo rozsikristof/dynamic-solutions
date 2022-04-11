@@ -1,7 +1,7 @@
 @import 'index';
 
 .card {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0 rem(6) rem(12) rem(-2), rgba(0, 0, 0, 0.3) 0 rem(3) rem(7) rem(-3);
     width: rem(750);
     min-width: rem(344);
     padding: rem(20) rem(40) rem(20) rem(40);
