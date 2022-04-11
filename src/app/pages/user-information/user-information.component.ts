@@ -126,8 +126,8 @@ export class UserInformationComponent implements OnDestroy {
             lastName: new FormControl(user.lastName, {
                 validators: [
                     Validators.required,
-                    Validators.min(MIN_NAME_TEXT),
-                    Validators.max(MAX_NAME_TEXT),
+                    Validators.minLength(MIN_NAME_TEXT),
+                    Validators.maxLength(MAX_NAME_TEXT),
                     noSpeicalCharacters
                 ],
                 updateOn: 'submit'
@@ -141,7 +141,9 @@ export class UserInformationComponent implements OnDestroy {
             }),
             phone: new FormControl(user.phone, {
                 validators: [
-                    Validators.required
+                    Validators.required,
+                    Validators.minLength(MIN_NAME_TEXT),
+                    Validators.maxLength(MAX_NAME_TEXT),
                 ],
                 updateOn: 'submit'
             }),

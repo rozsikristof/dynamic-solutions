@@ -55,7 +55,9 @@
                         [required]="true"
                         [group]="userInformationGroup"
                         [validators]="[
-                            formValidators.required
+                            formValidators.required,
+                            formValidators.minlength,
+                            formValidators.maxlength
                         ]"
                     ></ds-input>
                     <ds-input
