@@ -25,7 +25,11 @@ class Users {
             $sql = "SELECT * FROM " . $this->table . " WHERE id = '" . $id . "'";
             $userInfo = $this->conn->query($sql)->fetch_assoc();
 
-            $userInfo["image"] = base64_encode($userInfo["image"]);
+            if (isset($userInfo["image"])) {
+                $userInfo["image"] = base64_encode($userInfo["image"]);
+            } else {
+                $userInfo["image"] = null;
+            }
 
             return $userInfo;
         }
@@ -41,7 +45,7 @@ class Users {
 
             if (isset($image["tmp_name"])) {
                 $imageData = addslashes(file_get_contents($image["tmp_name"]));
-                $sql = "UPDATE " . $this->table . " SET image = '" . $imageData . "', imageName = '" . $image["name"] . "' WHERE id = '" . $user->id . "'";
+                $sql = "UPDATE " . $this->table . " SET image = '" . $imageData . "' WHERE id = '" . $user->id . "'";
                 $imageResult = $this->conn->query($sql);
             } else {
                 $imageResult = true;

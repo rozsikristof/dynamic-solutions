@@ -26,6 +26,7 @@ export class UserProfileComponent {
         this.userService.getUserById(this.userId)
             .then(response => {
                 this.user = response;
+                console.log(this.user);
             })
             .finally(() => {
                 this.isLoading = false;

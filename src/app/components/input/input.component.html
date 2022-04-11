@@ -2,6 +2,7 @@
     <div class="input__header">
         <span *ngIf="title" class="input__header-title">{{ title }}</span>
         <span *ngIf="required" class="input__header-astersk">&#8727;</span>
+        <span *ngIf="!required" class="input__header-optional">Optional</span>
     </div>
     <input
         class="input"

@@ -15,9 +15,14 @@ export class UserService {
     getUserById(id: number): Promise<User> {
         return axios.get(`${USERS_ROUTE}?id=${id}`).then(response => {
             this.user = response.data;
-            const imageBlob = new Blob([response.data.image], { type: 'image/jpg' });
+
+            if (this.user.image) {
+                const imageBlob = new Blob([response.data.image], { type: 'image/jpg' });
            
-            return this.readUserAvatar(imageBlob);
+                return this.readUserAvatar(imageBlob);
+            }
+
+            return null;
         }).then(userAvatar => {
             this.user.image = userAvatar;
             return this.user;

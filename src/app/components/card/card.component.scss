@@ -3,9 +3,10 @@
 .card {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     width: rem(750);
+    min-width: rem(344);
     padding: rem(20) rem(40) rem(20) rem(40);
     height: 100%;
-    background-color: aliceblue;
+    background-color: whitesmoke;
     overflow-y: auto;
 
     @include mediaSmall() {
