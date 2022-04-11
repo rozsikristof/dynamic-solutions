@@ -2,37 +2,37 @@
     <ds-card class="card--max-height">
         <div class="user-profile__inner">
             <h1 class="user-profile__title">User profile</h1>
-            <ds-loading *ngIf="isLoading"></ds-loading>
-            <ng-container *ngIf="!isLoading">
+            <ds-loading *ngIf="!(user | async)"></ds-loading>
+            <ng-container *ngIf="(user | async)">
                 <div class="user-profile__info">
                     <img
-                        *ngIf="!user.image"
+                        *ngIf="!(user | async)?.image"
                         class="image user-profile__no-avatar"
                         src="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-High-Quality-Image.png"
                         alt="No avatar"
                     />
                     <img
-                        *ngIf="user.image"
+                        *ngIf="(user | async)?.image"
                         class="image"
-                        [src]="user.image"
+                        [src]="(user | async)?.image"
                         alt="User avatar"
                     />
-                    <div *ngIf="user?.firstName" class="user-profile__grid">
+                    <div *ngIf="(user | async)?.firstName" class="user-profile__grid">
                         <span class="user-profile__grid-item">First Name:</span>
-                        <span class="user-profile__grid-item">{{ user.firstName }}</span>
+                        <span class="user-profile__grid-item">{{ (user | async).firstName }}</span>
                         <span class="user-profile__grid-item">Last Name:</span>
-                        <span class="user-profile__grid-item">{{ user.lastName }}</span>
+                        <span class="user-profile__grid-item">{{ (user | async).lastName }}</span>
                         <span class="user-profile__grid-item">Email:</span>
-                        <span class="user-profile__grid-item">{{ user.email }}</span>
+                        <span class="user-profile__grid-item">{{ (user | async).email }}</span>
                         <span class="user-profile__grid-item">Phone:</span>
-                        <span class="user-profile__grid-item">{{ user.phone }}</span>
+                        <span class="user-profile__grid-item">{{ (user | async).phone }}</span>
                         <span class="user-profile__grid-item">Birthday:</span>
-                        <span class="user-profile__grid-item">{{ user.birthday }}</span>
+                        <span class="user-profile__grid-item">{{ (user | async).birthday }}</span>
                         <span class="user-profile__grid-item">About:</span>
-                        <p class="user-profile__grid-item user-profile__about">{{ user.about }}</p>
+                        <p class="user-profile__grid-item user-profile__about">{{ (user | async).about }}</p>
                     </div>
                 </div>
-                <h2 class="user-profile__no-data" *ngIf="!user?.firstName">No user data to show</h2>
+                <h2 class="user-profile__no-data" *ngIf="!(user | async)?.firstName">No user data to show</h2>
                 <button
                     class="card__button"
                     aria-label="Edit details on user information page"

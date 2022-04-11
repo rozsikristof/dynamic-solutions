@@ -27,8 +27,6 @@ class Users {
 
             if (isset($userInfo["image"])) {
                 $userInfo["image"] = base64_encode($userInfo["image"]);
-            } else {
-                $userInfo["image"] = null;
             }
 
             return $userInfo;
@@ -51,7 +49,11 @@ class Users {
                 $imageResult = true;
             }
 
-            return ($result && $imageResult);
+            if ($result) {
+                return $this->getUserById($user->id);
+            }
+
+            return false;
         }
 
         return false;

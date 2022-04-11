@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { MAX_ABOUT_TEXT, MAX_NAME_TEXT, MIN_NAME_TEXT } from 'src/app/constants/constants';
 import { FormValidators } from 'src/app/constants/form-validators';
 import { User } from 'src/app/interfaces/user.interface';
 import { maxFileSize, markAllAsDirty, noSpeicalCharacters, isDateValid } from 'src/app/utils/form-validation.util';
-import { UserService } from 'src/services/user.service';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { UserService } from 'src/services/user.service';
     templateUrl: './user-information.component.html',
     styleUrls: ['./user-information.component.scss']
 })
-export class UserInformationComponent {
+export class UserInformationComponent implements OnDestroy {
     userInformationGroup: FormGroup;
     formValidators = FormValidators;
     isLoading: boolean;
@@ -22,13 +23,24 @@ export class UserInformationComponent {
     avatarBorderState: boolean;
 
     private userId: number;
+    private userSubscription: Subscription;
 
     constructor(
         private readonly formBuilder: FormBuilder,
         private readonly router: Router,
         private readonly userService: UserService
     ) {
-        this.getUserData();
+        this.userSubscription = this.userService.getCurrentuser$.subscribe(user => {
+            if (user) {
+                this.initilaizeFormGroup(user);
+            }
+        });
+    }
+
+    ngOnDestroy(): void {
+        if (this.userSubscription) {
+            this.userSubscription.unsubscribe();
+        }
     }
 
     updateUserInformation(): void {
@@ -37,7 +49,7 @@ export class UserInformationComponent {
 
             this.userService.updateUser(this.updatedUserDetails)
                 .then(() => {
-                    this.router.navigate(['profile'])
+                    this.router.navigate(['profile']);
                 })
                 .finally(() => {
                     this.isLoading = false;
@@ -97,31 +109,12 @@ export class UserInformationComponent {
         return this.userInformationGroup.get(controlName).value;
     }
 
-    private getUserData(): Promise<void> {
-        this.isLoading = true;
-        this.userId = +sessionStorage.getItem('userId');
-
-        if (!this.userId) {
-            this.router.navigate(['profile']);
-        }
-
-        return this.userService.getUserById(+this.userId)
-            .then(response => {
-                this.initilaizeFormGroup(response);
-            })
-            .catch(() => {
-                this.initilaizeFormGroup();
-            })
-            .finally(() =>{
-                this.isLoading = false;
-            });
-    }
-
-    private initilaizeFormGroup(userData = {} as User): void {
-        this.userAvatarUrl = userData.image;
+    private initilaizeFormGroup(user = {} as User): void {
+        this.userId = user.id;
+        this.userAvatarUrl = user.image;
 
         this.userInformationGroup = this.formBuilder.group({
-            firstName: new FormControl(userData?.firstName, {
+            firstName: new FormControl(user.firstName, {
                 validators: [
                     Validators.required,
                     Validators.minLength(MIN_NAME_TEXT),
@@ -130,7 +123,7 @@ export class UserInformationComponent {
                 ],
                 updateOn: 'submit'
             }),
-            lastName: new FormControl(userData.lastName, {
+            lastName: new FormControl(user.lastName, {
                 validators: [
                     Validators.required,
                     Validators.min(MIN_NAME_TEXT),
@@ -139,27 +132,27 @@ export class UserInformationComponent {
                 ],
                 updateOn: 'submit'
             }),
-            email: new FormControl(userData.email, {
+            email: new FormControl(user.email, {
                 validators: [
                     Validators.required,
                     Validators.email
                 ],
                 updateOn: 'submit'
             }),
-            phone: new FormControl(userData.phone, {
+            phone: new FormControl(user.phone, {
                 validators: [
                     Validators.required
                 ],
                 updateOn: 'submit'
             }),
-            birthday: new FormControl(userData.birthday, {
+            birthday: new FormControl(user.birthday, {
                 validators: [
                     Validators.required,
                     isDateValid
                 ],
                 updateOn: 'submit'
             }),
-            about: new FormControl(userData.about, {
+            about: new FormControl(user.about, {
                 validators: [
                     Validators.required,
                     Validators.maxLength(MAX_ABOUT_TEXT)
