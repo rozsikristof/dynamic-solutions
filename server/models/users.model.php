@@ -25,6 +25,7 @@ class Users {
             $sql = "SELECT * FROM " . $this->table . " WHERE id = '" . $id . "'";
             $userInfo = $this->conn->query($sql)->fetch_assoc();
 
+            //If image was sent then we send that data as well (since it's optional)
             if (isset($userInfo["image"])) {
                 $userInfo["image"] = base64_encode($userInfo["image"]);
             }
@@ -37,18 +38,17 @@ class Users {
 
     public function updateUser($user, $image) {
         if (isset($user->id)) {
-            $imageResult;
             $sql = "UPDATE " . $this->table . " SET firstName = '" . $user->firstName . "', lastName = '" . $user->lastName . "', email = '" . $user->email . "', phone = '" . $user->phone . "', birthday = '" . $user->birthday . "', about = '" . $user->about . "' WHERE id = '" . $user->id . "'";
             $result = $this->conn->query($sql);
 
+            // If image was sent as well, then we add the image data as well into the databse
             if (isset($image["tmp_name"])) {
                 $imageData = addslashes(file_get_contents($image["tmp_name"]));
                 $sql = "UPDATE " . $this->table . " SET image = '" . $imageData . "' WHERE id = '" . $user->id . "'";
-                $imageResult = $this->conn->query($sql);
-            } else {
-                $imageResult = true;
+                $this->conn->query($sql);
             }
 
+            // If the data update was successful then we send back the new data to FE
             if ($result) {
                 return $this->getUserById($user->id);
             }

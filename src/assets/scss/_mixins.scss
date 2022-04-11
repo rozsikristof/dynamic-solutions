@@ -1,5 +1,6 @@
 @import 'functions';
 
+// I like to use flex all the time, so better to create a mixin for it
 @mixin flex($align-items: normal, $direction: row) {
     display: flex;
     align-items: $align-items;
@@ -35,7 +36,7 @@
     background-color: $button-background;
     color: white;
     border-color: transparent;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0 rem(3) rem(8);
 }
 
 @mixin pageContentCenter() {
@@ -44,19 +45,19 @@
 }
 
 @mixin mediaLarge() {
-    @media only screen and (max-width: 1024px) {
+    @media only screen and (max-width: rem(1024)) {
         @content;
     }
 }
 
 @mixin mediaSmall() {
-    @media only screen and (max-width: 756px) {
+    @media only screen and (max-width: rem(756)) {
         @content;
     }
 }
 
 @mixin mediaExtraSmall() {
-    @media only screen and (max-width: 330px) {
+    @media only screen and (max-width: rem(330)) {
         @content;
     }
 }
