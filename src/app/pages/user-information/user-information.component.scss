@@ -1,5 +1,4 @@
-@import 'mixins';
-@import 'functions';
+@import 'index';
 
 .user-information {
     @include pageContentCenter;
@@ -20,7 +19,7 @@
 }
 
 .user-information__text-area--avatar {
-    width: rem(320);
+    width: $form-field-width;
 }
 
 .user-information__drag-and-drop {
@@ -80,5 +79,24 @@
 }
 
 .user-information__avatar-container {
-    width: rem(320);
+    width: $form-field-width;
+
+    .image {
+        transition: .2s;
+        cursor: pointer;
+    
+        &:hover {
+            max-width: rem(215);
+            max-height: rem(215);
+        }
+    }
 }
+
+.user-information__avatar-container--no-corner {
+    clip-path: none;    
+}
+
+.user-information__save-changes:hover {
+    background-color: rgb(3, 158, 11);
+}
+

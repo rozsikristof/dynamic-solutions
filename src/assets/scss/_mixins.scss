@@ -21,6 +21,23 @@
     }
 }
 
+@mixin inputBase() {
+    padding: rem(7);
+    border: rem(2) solid gray;
+    font-size: rem(16);
+
+    &:hover {
+        border-color: black;
+    }
+}
+
+@mixin buttonHover() {
+    background-color: $button-background;
+    color: white;
+    border-color: transparent;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
 @mixin pageContentCenter() {
     @include flex(center, column);
     height: 100%;

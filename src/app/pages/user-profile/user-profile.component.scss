@@ -45,6 +45,7 @@
 }
 
 .user-profile__grid-item {
+    word-break: break-all;
     padding: rem(15);
 
     &:nth-child(odd) {
@@ -54,4 +55,8 @@
 
 .user-profile__about {
     margin: 0;
+}
+
+.user-profile__no-data {
+    text-align: center;
 }

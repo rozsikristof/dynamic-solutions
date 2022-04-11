@@ -1,8 +1,9 @@
-@import 'functions';
-@import 'mixins';
+@import 'index';
+
+$font-size: rem(14);
 
 .input__wrapper {
-    width: rem(320);
+    width: $form-field-width;
 
     @include mediaExtraSmall() {
         width: rem(260);
@@ -15,9 +16,15 @@
     margin-bottom: rem(5);
 }
 
+.input__header-optional {
+    font-size: $font-size;
+    color: gray;
+    font-weight: bold;
+}
+
 .input__header-title {
     font-weight: bold;
-    font-size: rem(14);
+    font-size: $font-size;
 }
 
 .input__header-astersk {
@@ -28,14 +35,9 @@
 }
 
 .input {
-    width: 100%;
-    padding: rem(7);
-    border: rem(2) solid gray;
-    font-size: rem(16);
+    @include inputBase;
 
-    &:hover {
-        border-color: black;
-    }
+    width: 100%;
 }
 
 .input--error {

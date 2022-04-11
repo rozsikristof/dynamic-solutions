@@ -1,7 +1,8 @@
-<div class="input__wrapper" [formGroup]="group">
+<div *ngIf="group" class="input__wrapper" [formGroup]="group">
     <div class="input__header">
         <span *ngIf="title" class="input__header-title">{{ title }}</span>
         <span *ngIf="required" class="input__header-astersk">&#8727;</span>
+        <span *ngIf="!required" class="input__header-optional">Optional</span>
     </div>
     <input
         type="file"

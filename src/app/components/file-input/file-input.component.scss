@@ -1,0 +1,14 @@
+@import 'index';
+
+input[type=file]::file-selector-button {
+    @include inputBase;
+
+    background-color: transparent;
+    border-radius: rem(5);
+    transition: .2s;
+    cursor: pointer;
+
+    &:hover {
+        @include buttonHover;
+    }
+}

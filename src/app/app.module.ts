@@ -14,6 +14,7 @@ import { TextareaComponent } from './components/textarea/textarea.component';
 import { FileInputComponent } from './components/file-input/file-input.component';
 import { FileDirectiveDirective } from './directives/file-directive.directive';
 import { LoadingComponent } from './components/loading/loading.component';
+import { NumbersOnlyDirective } from './directives/numbers-only.directive';
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import { LoadingComponent } from './components/loading/loading.component';
         TextareaComponent,
         FileInputComponent,
         FileDirectiveDirective,
-        LoadingComponent
+        LoadingComponent,
+        NumbersOnlyDirective
     ],
     imports: [
         BrowserModule,

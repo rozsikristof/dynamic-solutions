@@ -14,6 +14,8 @@
 
             if (isset($_FILES["image"])) {
                 $image = $_FILES["image"];
+            } else {
+                $image = null;
             }
 
             $result = $users->updateUser($user, $image);

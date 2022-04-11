@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { User } from 'src/app/interfaces/user.interface';
-import { UserService } from 'src/services/user.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
     selector: 'ds-user-profile',
@@ -9,27 +10,13 @@ import { UserService } from 'src/services/user.service';
     styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent {
-    user: User;
-    isLoading: boolean;
-
-    private userId: number;
+    user: Observable<User>;
 
     constructor(
         private readonly router: Router,
         private readonly userService: UserService
     ) {
-        // Imagine we had a successful login and we fetch the userId
-        this.userId = 1;
-        sessionStorage.setItem('userId', `${this.userId}`);
-
-        this.isLoading = true;
-        this.userService.getUserById(this.userId)
-            .then(response => {
-                this.user = response;
-            })
-            .finally(() => {
-                this.isLoading = false;
-            });
+        this.user = this.userService.getCurrentuser$;
     }
 
     navigateToUserInfoPage(): void {
